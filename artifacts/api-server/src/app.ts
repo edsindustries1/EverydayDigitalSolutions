@@ -57,14 +57,37 @@ app.use("/api", router);
 // containing the Vite-built frontend. If unset (dev), this whole block no-ops.
 const publicDir = process.env["PUBLIC_DIR"];
 if (publicDir && fs.existsSync(publicDir)) {
-  // index: "index.html" lets express.static serve prerendered routes
-  // like /cookies/ (which has its own dist/public/cookies/index.html).
+  const publicDirResolved = path.resolve(publicDir);
+  // redirect: false disables the default trailing-slash 301 — we serve the
+  // prerendered <path>/index.html directly via the middleware below.
   app.use(
     express.static(publicDir, {
       maxAge: "1d",
       index: "index.html",
+      redirect: false,
     }),
   );
+  app.use((req, res, next) => {
+    if (req.method !== "GET") return next();
+    let reqPath: string;
+    try {
+      reqPath = decodeURIComponent(req.path);
+    } catch {
+      return next();
+    }
+    if (reqPath.includes("\0")) return next();
+    const candidate = path.resolve(path.join(publicDirResolved, reqPath, "index.html"));
+    if (
+      candidate !== path.join(publicDirResolved, "index.html") &&
+      !candidate.startsWith(publicDirResolved + path.sep)
+    ) {
+      return next();
+    }
+    fs.stat(candidate, (err, stat) => {
+      if (err || !stat.isFile()) return next();
+      res.sendFile(candidate);
+    });
+  });
   const indexHtml = path.join(publicDir, "index.html");
   app.use((req, res, next) => {
     if (req.method !== "GET") return next();
