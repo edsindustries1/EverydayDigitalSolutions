@@ -9,6 +9,16 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 
+app.disable("x-powered-by");
+
+app.use((_req, res, next) => {
+  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  next();
+});
+
 app.use(
   pinoHttp({
     logger,
@@ -33,7 +43,7 @@ app.use(
   cors({
     origin: corsOrigin
       ? corsOrigin.split(",").map((o) => o.trim()).filter(Boolean)
-      : true,
+      : ["https://everydaydigitalsolutions.com"],
     credentials: true,
   }),
 );
