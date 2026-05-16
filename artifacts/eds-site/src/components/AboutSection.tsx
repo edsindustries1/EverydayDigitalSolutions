@@ -22,7 +22,7 @@ export function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-16 lg:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-24 lg:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -76,7 +76,7 @@ export function AboutSection() {
               Hi, I'm Shushant. I founded Everyday Digital Solutions in <em className="text-primary italic">2018</em>.
             </h2>
 
-            <div className="flex flex-col gap-5 text-muted-foreground leading-relaxed mb-8 lg:mb-10 text-sm lg:text-base">
+            <div className="flex flex-col gap-5 text-muted-foreground leading-relaxed mb-8 lg:mb-10 text-sm sm:text-base">
               <p>
                 For seven years, I helped service businesses grow through digital marketing, lead generation, and custom systems. I ran offices, managed teams, and learned every part of the customer acquisition stack from the inside.
               </p>

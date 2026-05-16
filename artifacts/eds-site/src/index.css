@@ -109,8 +109,12 @@
     overflow-x: hidden;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
     @apply font-serif font-normal;
+  }
+
+  h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium;
   }
 }
 
@@ -199,18 +203,17 @@
 /* Logo */
 .kn-logo-link {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
   text-decoration: none;
   line-height: 1;
 }
 .kn-logo-img {
   display: block;
-  height: 2.5rem;
+  height: 2.25rem;
   width: auto;
   filter: none;
   flex-shrink: 0;
-  margin-top: 0.05rem;
 }
 .dark .kn-logo-img {
   filter: invert(1) brightness(1.05);

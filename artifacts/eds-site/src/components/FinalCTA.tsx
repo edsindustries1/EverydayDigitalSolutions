@@ -11,7 +11,7 @@ export function FinalCTA() {
   };
 
   return (
-    <section className="py-32 lg:py-48 relative overflow-hidden">
+    <section className="py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--accent-soft)_0%,transparent_50%)] pointer-events-none"></div>
 
       <motion.div

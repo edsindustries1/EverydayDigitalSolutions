@@ -10,13 +10,13 @@ export function Footer() {
         {/* Top grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 mb-12 lg:mb-20">
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <Link href="/" className="flex items-start gap-3 mb-5 group w-fit">
+            <Link href="/" className="flex items-center gap-3 mb-5 group w-fit">
               <OptimizedImage
                 src="/logo.png"
                 alt="Everyday Digital Solutions"
-                className="h-8 w-auto dark:invert dark:brightness-105 mt-0.5 flex-shrink-0"
-                width={32}
-                height={32}
+                className="h-9 w-auto dark:invert dark:brightness-105 flex-shrink-0"
+                width={43}
+                height={36}
                 loading="lazy"
                 decoding="async"
               />
@@ -31,46 +31,46 @@ export function Footer() {
 
           <div>
             <h4 className="font-serif text-base lg:text-lg mb-5">Studio</h4>
-            <ul className="flex flex-col gap-3">
-              <li><a href="/#work" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Work</a></li>
-              <li><a href="/#process" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Process</a></li>
-              <li><a href="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a></li>
-              <li><Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
-              <li><a href="/#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</a></li>
+            <ul className="flex flex-col gap-4 md:gap-3">
+              <li><a href="/#work" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Work</a></li>
+              <li><a href="/#process" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Process</a></li>
+              <li><a href="/#about" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">About</a></li>
+              <li><Link href="/blog" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
+              <li><a href="/#faq" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-serif text-base lg:text-lg mb-5">Services</h4>
-            <ul className="flex flex-col gap-3">
-              <li><Link href="/services/mobile-app-development" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Mobile Apps</Link></li>
-              <li><Link href="/services/ai-voice-agents" className="text-sm text-muted-foreground hover:text-foreground transition-colors">AI Voice Agents</Link></li>
-              <li><Link href="/services/automation-systems" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Automation</Link></li>
-              <li><Link href="/get-a-quote" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Get a Quote</Link></li>
+            <ul className="flex flex-col gap-4 md:gap-3">
+              <li><Link href="/services/mobile-app-development" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Mobile Apps</Link></li>
+              <li><Link href="/services/ai-voice-agents" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">AI Voice Agents</Link></li>
+              <li><Link href="/services/automation-systems" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Automation</Link></li>
+              <li><Link href="/get-a-quote" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Get a Quote</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-serif text-base lg:text-lg mb-5">Solutions</h4>
-            <ul className="flex flex-col gap-3">
-              <li><Link href="/solutions/salons-and-spas" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Salons &amp; Spas</Link></li>
-              <li><Link href="/solutions/real-estate" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Real Estate</Link></li>
-              <li><Link href="/solutions/clinics-and-healthcare" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Clinics &amp; Healthcare</Link></li>
-              <li><Link href="/solutions/restaurants-and-cafes" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Restaurants &amp; Cafes</Link></li>
+            <ul className="flex flex-col gap-4 md:gap-3">
+              <li><Link href="/solutions/salons-and-spas" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Salons &amp; Spas</Link></li>
+              <li><Link href="/solutions/real-estate" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Real Estate</Link></li>
+              <li><Link href="/solutions/clinics-and-healthcare" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Clinics &amp; Healthcare</Link></li>
+              <li><Link href="/solutions/restaurants-and-cafes" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Restaurants &amp; Cafes</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-serif text-base lg:text-lg mb-5">Get in touch</h4>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-4 md:gap-3">
               <li>
-                <Link href="/contact" data-float="" className="text-sm text-primary font-medium hover:text-primary/80 transition-colors">
+                <Link href="/contact" data-float="" className="text-base md:text-sm text-primary font-medium hover:text-primary/80 transition-colors">
                   Start a Project
                 </Link>
               </li>
-              <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">WhatsApp</a></li>
-              <li><a href={`mailto:${site.email}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors break-all">{site.email}</a></li>
-              <li><a href={`tel:${site.phone}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{site.phone}</a></li>
+              <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">WhatsApp</a></li>
+              <li><a href={`mailto:${site.email}`} className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all">{site.email}</a></li>
+              <li><a href={`tel:${site.phone}`} className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">{site.phone}</a></li>
             </ul>
           </div>
         </div>
@@ -80,26 +80,26 @@ export function Footer() {
           <div>
             <h4 className="font-serif text-base mb-4">Locations</h4>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
-              <li><Link href="/chandigarh" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Chandigarh</Link></li>
-              <li><Link href="/mohali" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Mohali</Link></li>
-              <li><Link href="/panchkula" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Panchkula</Link></li>
-              <li><Link href="/jalandhar" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Jalandhar</Link></li>
-              <li><Link href="/punjab" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Punjab</Link></li>
+              <li><Link href="/chandigarh" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Chandigarh</Link></li>
+              <li><Link href="/mohali" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Mohali</Link></li>
+              <li><Link href="/panchkula" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Panchkula</Link></li>
+              <li><Link href="/jalandhar" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Jalandhar</Link></li>
+              <li><Link href="/punjab" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Punjab</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-serif text-base mb-4">Free Tools</h4>
             <ul className="flex flex-col gap-2">
-              <li><Link href="/tools/app-cost-calculator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">App Cost Calculator</Link></li>
-              <li><Link href="/tools/ai-voice-agent-roi-calculator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Voice Agent ROI Calculator</Link></li>
-              <li><Link href="/resources/app-cost-guide-2026" className="text-sm text-muted-foreground hover:text-foreground transition-colors">2026 App Cost Guide</Link></li>
+              <li><Link href="/tools/app-cost-calculator" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">App Cost Calculator</Link></li>
+              <li><Link href="/tools/ai-voice-agent-roi-calculator" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Voice Agent ROI Calculator</Link></li>
+              <li><Link href="/resources/app-cost-guide-2026" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">2026 App Cost Guide</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-serif text-base mb-4">Selected Work</h4>
             <ul className="flex flex-col gap-2">
-              <li><Link href="/work/quasar-salon" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Quasar Salon — Mobile App</Link></li>
-              <li><Link href="/work/open-humana" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Open Humana — AI Dialler SaaS</Link></li>
+              <li><Link href="/work/quasar-salon" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Quasar Salon — Mobile App</Link></li>
+              <li><Link href="/work/open-humana" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Open Humana — AI Dialler SaaS</Link></li>
             </ul>
           </div>
         </div>

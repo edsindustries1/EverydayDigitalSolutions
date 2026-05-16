@@ -51,8 +51,8 @@ export function Navbar() {
               src="/logo.png"
               alt="Everyday Digital Solutions"
               className="kn-logo-img"
-              width={140}
-              height={32}
+              width={48}
+              height={40}
               loading="eager"
               decoding="async"
             />
