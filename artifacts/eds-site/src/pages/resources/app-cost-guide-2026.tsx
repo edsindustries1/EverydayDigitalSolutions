@@ -3,6 +3,43 @@ import { Link } from "wouter";
 import { site } from "@/lib/constants";
 import { SEO } from "@/components/SEO";
 
+const guideArticleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://everydaydigitalsolutions.com/resources/app-cost-guide-2026#article",
+  "headline": "App Cost Guide for Indian Businesses, 2026",
+  "description":
+    "Honest price ranges for custom software in India in 2026 — booking apps, CRMs, marketplaces, internal tools, and AI voice agents — from 12+ shipped projects across Punjab.",
+  "datePublished": "2026-01-15",
+  "dateModified": "2026-05-14",
+  "inLanguage": "en-IN",
+  "image": "https://everydaydigitalsolutions.com/opengraph.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Shushant Bangar",
+    "url": "https://everydaydigitalsolutions.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
+    "name": "Everyday Digital Solutions",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://everydaydigitalsolutions.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://everydaydigitalsolutions.com/resources/app-cost-guide-2026"
+  },
+  "about": [
+    "Custom software pricing in India",
+    "Mobile app development cost India 2026",
+    "AI voice agent pricing",
+    "Custom CRM cost"
+  ]
+};
+
 export default function AppCostGuide2026() {
   function handlePrint() {
     if (typeof window !== "undefined") window.print();
@@ -12,8 +49,19 @@ export default function AppCostGuide2026() {
     <>
       <SEO
         title="App Cost Guide for Indian Businesses 2026"
-        description="Honest price ranges for custom software in India in 2026, from 12+ shipped projects across Punjab. By Everyday Digital Solutions."
+        description="Honest price ranges for custom software in India in 2026, from 12+ shipped projects across Punjab. Booking apps, CRMs, AI voice agents — what they cost and why."
         canonical="/resources/app-cost-guide-2026"
+        ogType="article"
+        publishedTime="2026-01-15"
+        modifiedTime="2026-05-14"
+        author="Shushant Bangar"
+        ogImageAlt="App Cost Guide for Indian Businesses 2026 — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources/app-cost-guide-2026" },
+          { name: "App Cost Guide 2026", path: "/resources/app-cost-guide-2026" },
+        ]}
+        jsonLd={guideArticleSchema}
       />
       <div className="min-h-screen bg-background text-foreground">
         <div className="print:hidden border-b border-border bg-card">

@@ -13,14 +13,25 @@ const page = solutionPages["clinics-and-healthcare"];
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://everydaydigitalsolutions.com/solutions/clinics-and-healthcare#service",
   "name": "Clinic Management Software & Patient App Development",
   "description": page.seoDescription,
+  "url": "https://everydaydigitalsolutions.com/solutions/clinics-and-healthcare",
   "provider": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "url": "https://everydaydigitalsolutions.com"
   },
-  "areaServed": ["India", "Punjab", "Chandigarh", "Mohali", "Jalandhar"],
+  "audience": { "@type": "BusinessAudience", "name": "Clinics, Hospitals, and Healthcare Practices" },
+  "areaServed": [
+    { "@type": "City", "name": "Chandigarh" },
+    { "@type": "City", "name": "Mohali" },
+    { "@type": "City", "name": "Panchkula" },
+    { "@type": "City", "name": "Jalandhar" },
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" }
+  ],
   "serviceType": "Healthcare Software Development"
 };
 
@@ -41,6 +52,12 @@ export default function ClinicsAndHealthcare() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
+        ogImageAlt="Clinic management & patient app development — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Solutions", path: "/solutions/clinics-and-healthcare" },
+          { name: "Clinics & Healthcare", path: page.canonical },
+        ]}
         jsonLd={[serviceSchema, faqSchema]}
       />
       <Navbar />

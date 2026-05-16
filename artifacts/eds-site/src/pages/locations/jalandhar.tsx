@@ -4,26 +4,21 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { PageCTA } from "@/components/pages/PageCTA";
 import { locationPages } from "@/content/location-pages";
+import { localBusinessSchema } from "@/lib/schema";
 
 const page = locationPages["jalandhar"];
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Everyday Digital Solutions — Jalandhar",
-  "url": "https://everydaydigitalsolutions.com",
-  "telephone": "+91-9056066006",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "SCO 210, Silver Plaza Complex, Sodal Road",
-    "addressLocality": "Jalandhar",
-    "addressRegion": "Punjab",
-    "postalCode": "144004",
-    "addressCountry": "IN"
+const jalandharBusinessSchema = localBusinessSchema({
+  slug: "jalandhar",
+  city: "Jalandhar",
+  description: page.seoDescription,
+  address: {
+    streetAddress: "SCO 210, Silver Plaza Complex, Sodal Road",
+    addressLocality: "Jalandhar",
+    postalCode: "144004",
   },
-  "areaServed": { "@type": "City", "name": "Jalandhar" },
-  "description": page.seoDescription,
-};
+  geo: { latitude: "31.3256", longitude: "75.5727" },
+});
 
 export default function Jalandhar() {
   return (
@@ -32,7 +27,8 @@ export default function Jalandhar() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
-        jsonLd={localBusinessSchema}
+        ogImageAlt="Custom app & AI software office in Jalandhar (Silver Plaza, Sodal Road) — Everyday Digital Solutions"
+        jsonLd={jalandharBusinessSchema}
       />
       <Navbar />
       <main className="bg-background min-h-[100dvh]">

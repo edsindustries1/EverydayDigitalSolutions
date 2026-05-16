@@ -16,14 +16,20 @@
     <title>Everyday Digital Solutions — AI & Custom Software Studio · Mohali, India</title>
     <meta name="description" content="Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses across Chandigarh, Mohali & Jalandhar. Shipped in 30 days." />
     <meta name="theme-color" content="#0f0e08" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="format-detection" content="telephone=no" />
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="apple-touch-icon" sizes="512x512" href="/favicon-512.png" />
-    <!-- Preconnect for font performance -->
+    <!-- Preconnect for font + image performance. `crossorigin` is required on the
+         gstatic preconnect for the font files; without it the connection is
+         re-established when the actual font request fires. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload the WebP logo so the navbar (LCP-adjacent) paints without a network round-trip. -->
+    <link rel="preload" as="image" href="/logo.webp" type="image/webp" fetchpriority="high" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>

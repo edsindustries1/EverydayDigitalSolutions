@@ -4,37 +4,50 @@ import { SEO } from "@/components/SEO";
 import { BlogCard } from "@/components/pages/BlogCard";
 import { blogPosts } from "@/content/blog";
 
+const sorted = [...blogPosts].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
 const blogSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
+  "@id": "https://everydaydigitalsolutions.com/blog#blog",
   "name": "Everyday Digital Solutions Blog",
   "url": "https://everydaydigitalsolutions.com/blog",
   "description": "Insights on custom app development, AI voice agents, and business automation for service businesses in India and Punjab.",
+  "inLanguage": "en-IN",
   "author": {
     "@type": "Person",
     "name": "Shushant Bangar"
   },
   "publisher": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "logo": {
       "@type": "ImageObject",
       "url": "https://everydaydigitalsolutions.com/logo.png"
     }
-  }
+  },
+  "blogPost": sorted.map((post) => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "url": `https://everydaydigitalsolutions.com/blog/${post.slug}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": { "@type": "Person", "name": post.author.name },
+    "description": post.excerpt
+  }))
 };
-
-const sorted = [...blogPosts].sort(
-  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-);
 
 export default function BlogIndex() {
   return (
     <>
       <SEO
-        title="Blog — App Development, AI & Automation Insights for Indian Businesses"
+        title="Blog — App, AI & Automation Insights for Indian Businesses"
         description="Practical articles on custom mobile app development, AI voice agents, business automation, and the tools that help service businesses in India and Punjab compete and grow."
         canonical="/blog"
+        ogImageAlt="Everyday Digital Solutions blog — insights on apps, AI, and automation for Indian businesses"
         jsonLd={blogSchema}
       />
       <Navbar />

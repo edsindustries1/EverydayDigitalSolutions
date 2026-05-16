@@ -66,6 +66,10 @@ export default function BlogPost() {
         description={post.excerpt}
         canonical={`/blog/${post.slug}`}
         ogType="article"
+        publishedTime={post.date}
+        modifiedTime={post.date}
+        author={post.author.name}
+        ogImageAlt={`${post.title} — Everyday Digital Solutions blog`}
         jsonLd={articleSchema}
       />
       <Navbar />

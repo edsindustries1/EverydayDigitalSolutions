@@ -43,7 +43,7 @@ const breadcrumb = {
       "@type": "ListItem",
       "position": 2,
       "name": "Work",
-      "item": "https://everydaydigitalsolutions.com/#work"
+      "item": "https://everydaydigitalsolutions.com/work/quasar-salon"
     },
     {
       "@type": "ListItem",
@@ -112,6 +112,10 @@ export default function QuasarCaseStudy() {
         description="How Everyday Digital Solutions built Tricity's first celebrity-grade salon booking app in 30 days. 60% of bookings went digital in month one. 40% drop in no-shows."
         canonical="/work/quasar-salon"
         ogType="article"
+        publishedTime="2024-06-01"
+        modifiedTime="2025-05-07"
+        author="Shushant Bangar"
+        ogImageAlt="Quasar Salon mobile app — case study by Everyday Digital Solutions"
         jsonLd={[webPageSchema, articleSchema, reviewSchema]}
       />
       <Navbar />

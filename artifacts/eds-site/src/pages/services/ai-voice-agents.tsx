@@ -14,15 +14,38 @@ const page = servicePages["ai-voice-agents"];
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://everydaydigitalsolutions.com/services/ai-voice-agents#service",
   "name": page.title,
   "description": page.seoDescription,
+  "url": "https://everydaydigitalsolutions.com/services/ai-voice-agents",
+  "image": "https://everydaydigitalsolutions.com/opengraph.jpg",
   "provider": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "url": "https://everydaydigitalsolutions.com"
   },
-  "areaServed": ["India", "Punjab", "Chandigarh", "Mohali"],
-  "serviceType": "AI Voice Agent Development"
+  "areaServed": [
+    { "@type": "City", "name": "Chandigarh" },
+    { "@type": "City", "name": "Mohali" },
+    { "@type": "City", "name": "Panchkula" },
+    { "@type": "City", "name": "Jalandhar" },
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" }
+  ],
+  "serviceType": "AI Voice Agent Development",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://everydaydigitalsolutions.com/tools/ai-voice-agent-roi-calculator",
+    "priceCurrency": "INR",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "INR",
+      "minPrice": "100000",
+      "description": "AI voice agent deployment from ₹1L setup + per-minute usage. Final scope and price confirmed after a 30-minute discovery call."
+    },
+    "availability": "https://schema.org/InStock"
+  }
 };
 
 const faqSchema = {
@@ -42,6 +65,12 @@ export default function AIVoiceAgents() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
+        ogImageAlt="AI voice agents in Hindi, English & Punjabi for service businesses — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services/ai-voice-agents" },
+          { name: "AI Voice Agents", path: page.canonical },
+        ]}
         jsonLd={[serviceSchema, faqSchema]}
       />
       <Navbar />

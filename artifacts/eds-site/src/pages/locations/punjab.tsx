@@ -4,18 +4,18 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { PageCTA } from "@/components/pages/PageCTA";
 import { locationPages } from "@/content/location-pages";
+import { localBusinessSchema } from "@/lib/schema";
 
 const page = locationPages["punjab"];
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Everyday Digital Solutions",
-  "url": "https://everydaydigitalsolutions.com",
-  "telephone": "+91-9056066006",
-  "areaServed": { "@type": "AdministrativeArea", "name": "Punjab" },
-  "description": page.seoDescription,
-};
+const punjabBusinessSchema = localBusinessSchema({
+  slug: "punjab",
+  city: "Punjab",
+  description: page.seoDescription,
+  areaServedType: "AdministrativeArea",
+  // Mohali HQ — the primary studio for the whole of Punjab.
+  geo: { latitude: "30.7046", longitude: "76.7207" },
+});
 
 const cities = [
   { label: "Chandigarh", href: "/chandigarh" },
@@ -31,7 +31,8 @@ export default function Punjab() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
-        jsonLd={localBusinessSchema}
+        ogImageAlt="Custom app & AI software studio serving all of Punjab — Everyday Digital Solutions"
+        jsonLd={punjabBusinessSchema}
       />
       <Navbar />
       <main className="bg-background min-h-[100dvh]">

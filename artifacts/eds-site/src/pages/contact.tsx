@@ -103,9 +103,47 @@ const STEP_LABELS = ["About you", "Specifics", "The problem", "Scope", "Contact"
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
+  "@id": "https://everydaydigitalsolutions.com/contact#contactpage",
   "name": "Start a Project — Everyday Digital Solutions",
   "url": "https://everydaydigitalsolutions.com/contact",
-  "description": "Tell us about your project. 6-step guided intake — we'll respond on WhatsApp within 4 working hours."
+  "description": "Tell us about your project. 6-step guided intake — we'll respond on WhatsApp within 4 working hours.",
+  "inLanguage": "en-IN",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://everydaydigitalsolutions.com/#website",
+    "name": "Everyday Digital Solutions",
+    "url": "https://everydaydigitalsolutions.com"
+  },
+  "mainEntity": {
+    "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
+    "name": "Everyday Digital Solutions",
+    "url": "https://everydaydigitalsolutions.com",
+    "logo": "https://everydaydigitalsolutions.com/logo.png",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+91-9056066006",
+        "email": "admin@everydaydigitalsolutions.com",
+        "areaServed": ["IN"],
+        "availableLanguage": ["en", "hi", "pa"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://wa.me/919056066006",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi", "pa"]
+      }
+    ]
+  }
 };
 
 function StepDots({ step }: { step: number }) {
@@ -487,9 +525,10 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Start a Project"
-        description="Tell us what you're building. We'll scope it on a 15-minute call and respond on WhatsApp within 4 working hours."
+        title="Contact — Start a Custom Software Project"
+        description="Tell us what you're building. We'll scope it on a 15-minute call and respond on WhatsApp within 4 working hours. Offices in Mohali & Jalandhar, Punjab."
         canonical="/contact"
+        ogImageAlt="Start a custom software project with Everyday Digital Solutions"
         jsonLd={contactPageSchema}
       />
       <Navbar />

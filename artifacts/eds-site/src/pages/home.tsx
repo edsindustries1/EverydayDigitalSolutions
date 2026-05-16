@@ -157,8 +157,9 @@ export default function Home() {
     <>
       <SEO
         title="Everyday Digital Solutions — AI & Custom Software Studio · Mohali, India"
-        description="Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses across Chandigarh, Mohali & Jalandhar. Shipped in 30 days. Senior talent on every project."
+        description="Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses across Chandigarh, Mohali & Jalandhar. Shipped in 30 days."
         canonical="/"
+        ogImageAlt="Everyday Digital Solutions — AI & custom software studio for Tricity's most ambitious businesses"
         jsonLd={[localBusinessSchema, aggregateRatingSchema, faqSchema]}
       />
       <a

@@ -108,6 +108,25 @@ const PROCESSING_STEPS = [
 
 const STEP_LABELS = ["Industry", "Project type", "Features", "Scale", "Contact", "Your quote"];
 
+const quoteToolSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://everydaydigitalsolutions.com/get-a-quote#webapp",
+  "name": "EDS Instant Project Quote Generator",
+  "url": "https://everydaydigitalsolutions.com/get-a-quote",
+  "description":
+    "Free interactive tool that generates a personalised software project quote — cost breakdown, scope, and delivery window — in under 60 seconds.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "browserRequirements": "Requires JavaScript",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
+    "name": "Everyday Digital Solutions"
+  }
+};
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function fmt(n: number): string {
@@ -516,7 +535,7 @@ export default function GetAQuote() {
   if (processing) {
     return (
       <>
-        <SEO title="Generating your quote..." description="Building your personalised project proposal." canonical="/get-a-quote" />
+        <SEO title="Generating your quote..." description="Building your personalised project proposal." canonical="/get-a-quote" noindex />
         <Navbar />
         <main className="min-h-[100dvh] flex items-center justify-center px-4">
           <div className="max-w-md w-full text-center">
@@ -550,7 +569,7 @@ export default function GetAQuote() {
 
     return (
       <>
-        <SEO title={`Your quote — ${fmtFull(quote.total)}`} description="Your personalised project proposal from Everyday Digital Solutions." canonical="/get-a-quote" />
+        <SEO title={`Your quote — ${fmtFull(quote.total)}`} description="Your personalised project proposal from Everyday Digital Solutions." canonical="/get-a-quote" noindex />
         <Navbar />
         <main className="pt-8 pb-20 lg:pt-16 lg:pb-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100dvh]">
 
@@ -713,9 +732,11 @@ export default function GetAQuote() {
   return (
     <>
       <SEO
-        title="Get an Instant Quote"
-        description="Fill in 5 quick questions and get an AI-generated project quote with cost breakdown and delivery estimate — in under 60 seconds."
+        title="Get an Instant Project Quote — Free AI-Generated Proposal"
+        description="Answer 5 quick questions and get an AI-generated project quote with cost breakdown, delivery estimate, and downloadable PDF proposal — in under 60 seconds."
         canonical="/get-a-quote"
+        ogImageAlt="Free instant project quote generator — Everyday Digital Solutions"
+        jsonLd={quoteToolSchema}
       />
       <Navbar />
       <main className="pt-8 pb-16 sm:pt-12 lg:pt-28 lg:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100dvh]">

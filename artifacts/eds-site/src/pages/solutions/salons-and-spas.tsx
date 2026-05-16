@@ -13,14 +13,25 @@ const page = solutionPages["salons-and-spas"];
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://everydaydigitalsolutions.com/solutions/salons-and-spas#service",
   "name": "Salon & Spa App Development",
   "description": page.seoDescription,
+  "url": "https://everydaydigitalsolutions.com/solutions/salons-and-spas",
   "provider": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "url": "https://everydaydigitalsolutions.com"
   },
-  "areaServed": ["India", "Punjab", "Chandigarh", "Mohali", "Jalandhar"],
+  "audience": { "@type": "BusinessAudience", "name": "Salons, Spas, and Wellness Studios" },
+  "areaServed": [
+    { "@type": "City", "name": "Chandigarh" },
+    { "@type": "City", "name": "Mohali" },
+    { "@type": "City", "name": "Panchkula" },
+    { "@type": "City", "name": "Jalandhar" },
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" }
+  ],
   "serviceType": "Mobile App Development for Salons"
 };
 
@@ -41,6 +52,12 @@ export default function SalonsAndSpas() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
+        ogImageAlt="Salon & spa custom app development — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Solutions", path: "/solutions/salons-and-spas" },
+          { name: "Salons & Spas", path: page.canonical },
+        ]}
         jsonLd={[serviceSchema, faqSchema]}
       />
       <Navbar />

@@ -46,6 +46,7 @@ export function Footer() {
               <li><Link href="/services/mobile-app-development" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Mobile Apps</Link></li>
               <li><Link href="/services/ai-voice-agents" className="text-sm text-muted-foreground hover:text-foreground transition-colors">AI Voice Agents</Link></li>
               <li><Link href="/services/automation-systems" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Automation</Link></li>
+              <li><Link href="/get-a-quote" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Get a Quote</Link></li>
             </ul>
           </div>
 
@@ -53,6 +54,9 @@ export function Footer() {
             <h4 className="font-serif text-base lg:text-lg mb-5">Solutions</h4>
             <ul className="flex flex-col gap-3">
               <li><Link href="/solutions/salons-and-spas" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Salons &amp; Spas</Link></li>
+              <li><Link href="/solutions/real-estate" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Real Estate</Link></li>
+              <li><Link href="/solutions/clinics-and-healthcare" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Clinics &amp; Healthcare</Link></li>
+              <li><Link href="/solutions/restaurants-and-cafes" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Restaurants &amp; Cafes</Link></li>
             </ul>
           </div>
 
@@ -67,6 +71,35 @@ export function Footer() {
               <li><a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">WhatsApp</a></li>
               <li><a href={`mailto:${site.email}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors break-all">{site.email}</a></li>
               <li><a href={`tel:${site.phone}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{site.phone}</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Locations + Resources strip — important internal links for SEO crawl + topical authority. */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mb-12 pb-12 border-b border-border/40">
+          <div>
+            <h4 className="font-serif text-base mb-4">Locations</h4>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+              <li><Link href="/chandigarh" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Chandigarh</Link></li>
+              <li><Link href="/mohali" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Mohali</Link></li>
+              <li><Link href="/panchkula" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Panchkula</Link></li>
+              <li><Link href="/jalandhar" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Jalandhar</Link></li>
+              <li><Link href="/punjab" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Punjab</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-serif text-base mb-4">Free Tools</h4>
+            <ul className="flex flex-col gap-2">
+              <li><Link href="/tools/app-cost-calculator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">App Cost Calculator</Link></li>
+              <li><Link href="/tools/ai-voice-agent-roi-calculator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Voice Agent ROI Calculator</Link></li>
+              <li><Link href="/resources/app-cost-guide-2026" className="text-sm text-muted-foreground hover:text-foreground transition-colors">2026 App Cost Guide</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-serif text-base mb-4">Selected Work</h4>
+            <ul className="flex flex-col gap-2">
+              <li><Link href="/work/quasar-salon" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Quasar Salon — Mobile App</Link></li>
+              <li><Link href="/work/open-humana" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Open Humana — AI Dialler SaaS</Link></li>
             </ul>
           </div>
         </div>

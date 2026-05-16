@@ -13,14 +13,25 @@ const page = solutionPages["restaurants-and-cafes"];
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://everydaydigitalsolutions.com/solutions/restaurants-and-cafes#service",
   "name": "Restaurant App Development — Ordering, Table Booking & Loyalty",
   "description": page.seoDescription,
+  "url": "https://everydaydigitalsolutions.com/solutions/restaurants-and-cafes",
   "provider": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "url": "https://everydaydigitalsolutions.com"
   },
-  "areaServed": ["India", "Punjab", "Chandigarh", "Mohali", "Jalandhar"],
+  "audience": { "@type": "BusinessAudience", "name": "Restaurants, Cafes, and Cloud Kitchens" },
+  "areaServed": [
+    { "@type": "City", "name": "Chandigarh" },
+    { "@type": "City", "name": "Mohali" },
+    { "@type": "City", "name": "Panchkula" },
+    { "@type": "City", "name": "Jalandhar" },
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" }
+  ],
   "serviceType": "Restaurant App Development"
 };
 
@@ -41,6 +52,12 @@ export default function RestaurantsAndCafes() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
+        ogImageAlt="Restaurant & cafe app development — ordering, table booking, loyalty — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Solutions", path: "/solutions/restaurants-and-cafes" },
+          { name: "Restaurants & Cafes", path: page.canonical },
+        ]}
         jsonLd={[serviceSchema, faqSchema]}
       />
       <Navbar />

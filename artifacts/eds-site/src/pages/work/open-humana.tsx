@@ -62,6 +62,10 @@ export default function OpenHumanaCaseStudy() {
         description="How Everyday Digital Solutions built Open Humana — an AI dialler SaaS where Alex AI handles every outbound dial and transfers only live calls. 5x to 10x dial volume. 100% live-prospect conversations."
         canonical="/work/open-humana"
         ogType="article"
+        publishedTime="2024-06-01"
+        modifiedTime="2025-05-12"
+        author="Shushant Bangar"
+        ogImageAlt="Open Humana AI dialler dashboard — case study by Everyday Digital Solutions"
         jsonLd={[webPageSchema, articleSchema]}
       />
       <Navbar />

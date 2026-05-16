@@ -4,18 +4,17 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { PageCTA } from "@/components/pages/PageCTA";
 import { locationPages } from "@/content/location-pages";
+import { localBusinessSchema } from "@/lib/schema";
 
 const page = locationPages["panchkula"];
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Everyday Digital Solutions",
-  "url": "https://everydaydigitalsolutions.com",
-  "telephone": "+91-9056066006",
-  "areaServed": { "@type": "City", "name": "Panchkula" },
-  "description": page.seoDescription,
-};
+const panchkulaBusinessSchema = localBusinessSchema({
+  slug: "panchkula",
+  city: "Panchkula",
+  description: page.seoDescription,
+  // Panchkula is served from the Mohali HQ (20–25 minute drive). Coordinates point at central Sector 11 for geo-relevance with the city served.
+  geo: { latitude: "30.6942", longitude: "76.8606" },
+});
 
 export default function Panchkula() {
   return (
@@ -24,7 +23,8 @@ export default function Panchkula() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
-        jsonLd={localBusinessSchema}
+        ogImageAlt="Custom app & AI software development serving Panchkula — Everyday Digital Solutions"
+        jsonLd={panchkulaBusinessSchema}
       />
       <Navbar />
       <main className="bg-background min-h-[100dvh]">

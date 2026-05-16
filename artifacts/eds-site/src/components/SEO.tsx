@@ -79,6 +79,8 @@ interface SEOProps {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  /** Optional descriptive alt text for the social share image. */
+  ogImageAlt?: string;
   ogType?: "website" | "article";
   jsonLd?: JsonLdObject | JsonLdObject[];
   /**
@@ -87,6 +89,12 @@ interface SEOProps {
    */
   breadcrumbs?: BreadcrumbItem[];
   noindex?: boolean;
+  /** ISO 8601 — emits `article:published_time` (article pages only). */
+  publishedTime?: string;
+  /** ISO 8601 — emits `article:modified_time` (article pages only). */
+  modifiedTime?: string;
+  /** Author display name — emits `article:author` (article pages only). */
+  author?: string;
 }
 
 function makeBreadcrumbList(items: BreadcrumbItem[]): JsonLdObject {
@@ -139,10 +147,14 @@ export function SEO({
   description = DEFAULT_DESCRIPTION,
   canonical,
   ogImage = DEFAULT_OG_IMAGE,
+  ogImageAlt,
   ogType = "website",
   jsonLd,
   breadcrumbs,
   noindex = false,
+  publishedTime,
+  modifiedTime,
+  author,
 }: SEOProps) {
   const fullTitle = title.includes(SITE_NAME)
     ? title
@@ -150,6 +162,12 @@ export function SEO({
   const canonicalUrl = canonical
     ? `${BASE_URL}${canonical}`
     : BASE_URL;
+  // Allow callers to pass an absolute or root-relative OG image; normalise to absolute.
+  const absoluteOgImage = /^https?:\/\//i.test(ogImage)
+    ? ogImage
+    : `${BASE_URL}${ogImage.startsWith("/") ? ogImage : `/${ogImage}`}`;
+  const resolvedOgImageAlt =
+    ogImageAlt ?? `${SITE_NAME} — ${title}`;
 
   const userJsonLd: JsonLdObject[] = jsonLd
     ? Array.isArray(jsonLd)
@@ -174,7 +192,13 @@ export function SEO({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {noindex ? (
+        <meta name="robots" content="noindex,nofollow" />
+      ) : (
+        // Allow Google to surface full image previews and longer text snippets,
+        // which helps location/service pages rank in rich result formats.
+        <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+      )}
       {GOOGLE_SITE_VERIFICATION && (
         <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
       )}
@@ -186,16 +210,32 @@ export function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={absoluteOgImage} />
+      <meta property="og:image:secure_url" content={absoluteOgImage} />
+      <meta property="og:image:alt" content={resolvedOgImageAlt} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:locale" content="en_IN" />
+
+      {/* Article-specific OG tags (only emitted when ogType="article") */}
+      {ogType === "article" && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )}
+      {ogType === "article" && modifiedTime && (
+        <meta property="article:modified_time" content={modifiedTime} />
+      )}
+      {ogType === "article" && author && (
+        <meta property="article:author" content={author} />
+      )}
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@everydaydigital" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={absoluteOgImage} />
+      <meta name="twitter:image:alt" content={resolvedOgImageAlt} />
 
       {/* JSON-LD */}
       {allJsonLd.map((schema, i) => (

@@ -14,15 +14,38 @@ const page = servicePages["mobile-app-development"];
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://everydaydigitalsolutions.com/services/mobile-app-development#service",
   "name": page.title,
   "description": page.seoDescription,
+  "url": "https://everydaydigitalsolutions.com/services/mobile-app-development",
+  "image": "https://everydaydigitalsolutions.com/opengraph.jpg",
   "provider": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "url": "https://everydaydigitalsolutions.com"
   },
-  "areaServed": ["Chandigarh", "Mohali", "Panchkula", "Jalandhar", "Punjab", "India"],
-  "serviceType": "Mobile App Development"
+  "areaServed": [
+    { "@type": "City", "name": "Chandigarh" },
+    { "@type": "City", "name": "Mohali" },
+    { "@type": "City", "name": "Panchkula" },
+    { "@type": "City", "name": "Jalandhar" },
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" }
+  ],
+  "serviceType": "Mobile App Development",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://everydaydigitalsolutions.com/get-a-quote",
+    "priceCurrency": "INR",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "INR",
+      "minPrice": "150000",
+      "description": "Custom native iOS and Android apps starting from ₹1.5 lakh. Final scope and price confirmed after a 30-minute discovery call."
+    },
+    "availability": "https://schema.org/InStock"
+  }
 };
 
 const faqSchema = {
@@ -42,6 +65,12 @@ export default function MobileAppDevelopment() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
+        ogImageAlt="Custom mobile app development for Tricity service businesses — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services/mobile-app-development" },
+          { name: "Mobile App Development", path: page.canonical },
+        ]}
         jsonLd={[serviceSchema, faqSchema]}
       />
       <Navbar />

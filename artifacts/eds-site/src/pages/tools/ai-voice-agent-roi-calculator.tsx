@@ -147,9 +147,11 @@ export default function AIVoiceAgentROICalculator() {
         title="AI Voice Agent ROI Calculator — Free Tool for Indian Businesses"
         description="Estimate the additional revenue and 12-month ROI from deploying an AI voice agent for sub-60-second lead response. Free interactive calculator."
         canonical="/tools/ai-voice-agent-roi-calculator"
+        ogImageAlt="Free AI Voice Agent ROI Calculator for Indian businesses — Everyday Digital Solutions"
         jsonLd={softwareApplicationSchema}
         breadcrumbs={[
           { name: "Home", path: "/" },
+          { name: "Tools", path: "/tools/ai-voice-agent-roi-calculator" },
           { name: "AI Voice Agent ROI Calculator", path: "/tools/ai-voice-agent-roi-calculator" },
         ]}
       />

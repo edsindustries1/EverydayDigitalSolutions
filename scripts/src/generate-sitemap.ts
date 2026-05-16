@@ -17,6 +17,7 @@ const routes: SitemapEntry[] = [
   { path: "/",                                             changefreq: "weekly",  priority: "1.0" },
   { path: "/contact",                                      changefreq: "monthly", priority: "0.9" },
   { path: "/work/quasar-salon",                            changefreq: "monthly", priority: "0.7" },
+  { path: "/work/open-humana",                             changefreq: "monthly", priority: "0.7" },
 
   { path: "/services/mobile-app-development",              changefreq: "monthly", priority: "0.9" },
   { path: "/services/ai-voice-agents",                     changefreq: "monthly", priority: "0.9" },
@@ -41,6 +42,12 @@ const routes: SitemapEntry[] = [
   // Free interactive tools
   { path: "/tools/app-cost-calculator",                    changefreq: "monthly", priority: "0.85" },
   { path: "/tools/ai-voice-agent-roi-calculator",          changefreq: "monthly", priority: "0.85" },
+
+  // Quote engine
+  { path: "/get-a-quote",                                  changefreq: "monthly", priority: "0.9" },
+
+  // Resources
+  { path: "/resources/app-cost-guide-2026",                changefreq: "monthly", priority: "0.8" },
 
   { path: "/solutions/salons-and-spas",                    changefreq: "monthly", priority: "0.85" },
   { path: "/solutions/real-estate",                        changefreq: "monthly", priority: "0.85" },

@@ -14,15 +14,38 @@ const page = servicePages["automation-systems"];
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://everydaydigitalsolutions.com/services/automation-systems#service",
   "name": page.title,
   "description": page.seoDescription,
+  "url": "https://everydaydigitalsolutions.com/services/automation-systems",
+  "image": "https://everydaydigitalsolutions.com/opengraph.jpg",
   "provider": {
     "@type": "Organization",
+    "@id": "https://everydaydigitalsolutions.com/#organization",
     "name": "Everyday Digital Solutions",
     "url": "https://everydaydigitalsolutions.com"
   },
-  "areaServed": ["India", "Punjab", "Chandigarh", "Mohali", "Jalandhar"],
-  "serviceType": "Business Automation"
+  "areaServed": [
+    { "@type": "City", "name": "Chandigarh" },
+    { "@type": "City", "name": "Mohali" },
+    { "@type": "City", "name": "Panchkula" },
+    { "@type": "City", "name": "Jalandhar" },
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" }
+  ],
+  "serviceType": "Business Automation",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://everydaydigitalsolutions.com/get-a-quote",
+    "priceCurrency": "INR",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "INR",
+      "minPrice": "100000",
+      "description": "Automation builds from ₹1L for a focused workflow. Final scope and price confirmed after a free workflow audit."
+    },
+    "availability": "https://schema.org/InStock"
+  }
 };
 
 const faqSchema = {
@@ -44,6 +67,12 @@ export default function AutomationSystems() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
+        ogImageAlt="Business automation systems for service businesses in Punjab — Everyday Digital Solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services/automation-systems" },
+          { name: "Automation Systems", path: page.canonical },
+        ]}
         jsonLd={[serviceSchema, faqSchema]}
       />
       <Navbar />

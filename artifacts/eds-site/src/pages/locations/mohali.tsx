@@ -4,26 +4,21 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { PageCTA } from "@/components/pages/PageCTA";
 import { locationPages } from "@/content/location-pages";
+import { localBusinessSchema } from "@/lib/schema";
 
 const page = locationPages["mohali"];
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Everyday Digital Solutions — Mohali",
-  "url": "https://everydaydigitalsolutions.com",
-  "telephone": "+91-9056066006",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Tecfin Tower, 264-265, Phase 8B, Sector 74",
-    "addressLocality": "Mohali",
-    "addressRegion": "Punjab",
-    "postalCode": "140307",
-    "addressCountry": "IN"
+const mohaliBusinessSchema = localBusinessSchema({
+  slug: "mohali",
+  city: "Mohali",
+  description: page.seoDescription,
+  address: {
+    streetAddress: "Tecfin Tower, 264-265, Phase 8B, Sector 74",
+    addressLocality: "Mohali",
+    postalCode: "140307",
   },
-  "areaServed": { "@type": "City", "name": "Mohali" },
-  "description": page.seoDescription,
-};
+  geo: { latitude: "30.7046", longitude: "76.7207" },
+});
 
 export default function Mohali() {
   return (
@@ -32,7 +27,8 @@ export default function Mohali() {
         title={page.seoTitle}
         description={page.seoDescription}
         canonical={page.canonical}
-        jsonLd={localBusinessSchema}
+        ogImageAlt="Custom app & AI software studio in Mohali (Phase 8B, Sector 74) — Everyday Digital Solutions"
+        jsonLd={mohaliBusinessSchema}
       />
       <Navbar />
       <main className="bg-background min-h-[100dvh]">

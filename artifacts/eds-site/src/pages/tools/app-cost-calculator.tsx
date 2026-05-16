@@ -177,9 +177,11 @@ export default function AppCostCalculator() {
         title="App Cost Calculator (India, 2026) — Free Interactive Tool"
         description="Free calculator that estimates what a custom mobile app costs to build in India in 2026. Pick app type, platforms, and features — get a transparent budget band in minutes."
         canonical="/tools/app-cost-calculator"
+        ogImageAlt="Free App Cost Calculator for India 2026 — Everyday Digital Solutions"
         jsonLd={softwareApplicationSchema}
         breadcrumbs={[
           { name: "Home", path: "/" },
+          { name: "Tools", path: "/tools/app-cost-calculator" },
           { name: "App Cost Calculator", path: "/tools/app-cost-calculator" },
         ]}
       />

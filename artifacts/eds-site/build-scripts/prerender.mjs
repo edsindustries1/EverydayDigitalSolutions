@@ -83,6 +83,9 @@ const ROUTES = [
   { urlPath: "tools/app-cost-calculator",           url: "/tools/app-cost-calculator" },
   { urlPath: "tools/ai-voice-agent-roi-calculator", url: "/tools/ai-voice-agent-roi-calculator" },
 
+  // Lead-magnet resources
+  { urlPath: "resources/app-cost-guide-2026",       url: "/resources/app-cost-guide-2026" },
+
   // Blog index
   { urlPath: "blog",                                url: "/blog" },
 
