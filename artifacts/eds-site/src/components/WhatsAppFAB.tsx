@@ -22,7 +22,7 @@ export function WhatsAppFAB() {
     setHidden(window.scrollY > HIDE_AFTER_PX);
   }, [location]);
 
-  if (location.startsWith("/contact") || location.startsWith("/admin")) return null;
+  if (location.startsWith("/contact") || location.startsWith("/admin") || location.startsWith("/card")) return null;
   if (hidden) return null;
 
   return (

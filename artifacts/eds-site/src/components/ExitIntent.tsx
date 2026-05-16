@@ -12,7 +12,7 @@ export function ExitIntent() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.innerWidth < 1024) return; // desktop only
-    if (location.startsWith("/contact") || location.startsWith("/admin")) return;
+    if (location.startsWith("/contact") || location.startsWith("/admin") || location.startsWith("/card")) return;
     try {
       if (sessionStorage.getItem(SHOWN_KEY) === "1") return;
     } catch {

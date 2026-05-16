@@ -53,6 +53,8 @@ import RestaurantsAndCafes from "@/pages/solutions/restaurants-and-cafes";
 import BlogIndex from "@/pages/blog/index";
 import BlogPost from "@/pages/blog/post";
 
+import CardPage from "@/pages/card";
+
 import { StickyCTA } from "@/components/StickyCTA";
 import { ExitIntent } from "@/components/ExitIntent";
 import { WhatsAppFAB } from "@/components/WhatsAppFAB";
@@ -106,6 +108,8 @@ function Router() {
 
       <Route path="/blog" component={BlogIndex} />
       <Route path="/blog/:slug" component={BlogPost} />
+
+      <Route path="/card/:slug" component={CardPage} />
 
       <Route component={NotFound} />
     </Switch>

@@ -34,7 +34,7 @@ export function StickyCTA() {
   }, [location]);
 
   if (!mounted || dismissed || !scrolledPast) return null;
-  if (location.startsWith("/contact") || location.startsWith("/admin")) return null;
+  if (location.startsWith("/contact") || location.startsWith("/admin") || location.startsWith("/card")) return null;
 
   function dismiss() {
     setDismissed(true);
