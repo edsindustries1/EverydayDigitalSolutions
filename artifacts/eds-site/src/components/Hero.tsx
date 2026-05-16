@@ -15,13 +15,16 @@ export function Hero() {
     return canUseWebGL();
   });
 
+  // Entrance shares the hover-lift vocabulary: y -12 → 0 with power3.out
+  // timing. Each glass element lands into place with the same physics that
+  // the GlassFloat hover uses on the way up.
   const variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : -12 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number] } }
   };
   const container = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
   };
 
   return (
@@ -112,21 +115,21 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-5 lg:gap-6">
-            <div className="flex flex-col gap-1 lg:gap-2">
+          {/* Stats — each tile is a glass surface that lifts + refracts on hover */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-4">
+            <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
               <span className="text-2xl lg:text-3xl font-serif text-primary">30 days</span>
               <span className="text-xs lg:text-sm text-muted-foreground">Average delivery</span>
             </div>
-            <div className="flex flex-col gap-1 lg:gap-2">
+            <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
               <span className="text-2xl lg:text-3xl font-serif text-primary">2</span>
               <span className="text-xs lg:text-sm text-muted-foreground">In-house products built</span>
             </div>
-            <div className="flex flex-col gap-1 lg:gap-2">
+            <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
               <span className="text-2xl lg:text-3xl font-serif text-primary">Mohali</span>
               <span className="text-xs lg:text-sm text-muted-foreground">Studio &amp; home base</span>
             </div>
-            <div className="flex flex-col gap-1 lg:gap-2">
+            <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
               <span className="text-2xl lg:text-3xl font-serif text-primary">2018</span>
               <span className="text-xs lg:text-sm text-muted-foreground">Founded · 7 years building</span>
             </div>
