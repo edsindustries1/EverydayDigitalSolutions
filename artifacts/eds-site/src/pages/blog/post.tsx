@@ -31,26 +31,45 @@ export default function BlogPost() {
     );
   }
 
+  const wordCount = [post.excerpt, ...post.sections.flatMap((s) => [s.heading, s.body])]
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    "@id": `${BASE_URL}/blog/${post.slug}#article`,
     "headline": post.title,
     "description": post.excerpt,
     "datePublished": post.date,
     "dateModified": post.date,
+    "wordCount": wordCount,
+    "keywords": post.tags.join(", "),
+    "articleSection": post.tags[0],
+    "inLanguage": "en-IN",
+    "url": `${BASE_URL}/blog/${post.slug}`,
     "author": {
       "@type": "Person",
-      "name": post.author.name
+      "name": post.author.name,
+      "jobTitle": post.author.role,
+      "url": `${BASE_URL}/`
     },
     "publisher": {
       "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
       "name": "Everyday Digital Solutions",
       "logo": {
         "@type": "ImageObject",
         "url": `${BASE_URL}/logo.png`
       }
     },
-    "image": `${BASE_URL}/opengraph.jpg`,
+    "image": {
+      "@type": "ImageObject",
+      "url": `${BASE_URL}/opengraph.jpg`,
+      "width": 1200,
+      "height": 630
+    },
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `${BASE_URL}/blog/${post.slug}`
