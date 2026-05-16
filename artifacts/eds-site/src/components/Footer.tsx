@@ -1,6 +1,5 @@
 import { Link } from "wouter";
 import { site } from "@/lib/constants";
-import { OptimizedImage } from "@/components/OptimizedImage";
 
 export function Footer() {
   return (
@@ -10,16 +9,23 @@ export function Footer() {
         {/* Top grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 mb-12 lg:mb-20">
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-5 group w-fit">
-              <OptimizedImage
-                src="/logo.png"
-                alt="Everyday Digital Solutions"
-                className="h-9 w-auto dark:invert dark:brightness-105 flex-shrink-0"
-                width={43}
-                height={36}
-                loading="lazy"
-                decoding="async"
-              />
+            <Link href="/" className="flex items-center gap-3 mb-5 group w-fit" aria-label="Everyday Digital Solutions home">
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl glass-elevated relative overflow-hidden flex-shrink-0 group-hover:border-primary transition-colors">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ background: "radial-gradient(120% 80% at 50% 0%, var(--accent-soft), transparent 65%)" }}
+                />
+                <img
+                  src="/logo.png"
+                  alt="Everyday Digital Solutions"
+                  className="relative z-10 max-w-[70%] max-h-[70%] w-auto h-auto object-contain dark:invert dark:brightness-105"
+                  width={28}
+                  height={23}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
               <span className="text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors leading-snug">
                 Everyday<br />Digital Solutions
               </span>

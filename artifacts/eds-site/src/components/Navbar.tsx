@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
-import { OptimizedImage } from "@/components/OptimizedImage";
 import { canUseWebGL } from "@/lib/canUseWebGL";
 import { NavSlideTabs } from "@/components/NavSlideTabs";
 
@@ -46,16 +45,18 @@ export function Navbar() {
       <div className="kn-container">
         {/* Row 1: logo + CTA */}
         <nav className="kn-nav-row">
-          <Link href="/" className="kn-logo-link" aria-label="Home">
-            <OptimizedImage
-              src="/logo.png"
-              alt="Everyday Digital Solutions"
-              className="kn-logo-img"
-              width={48}
-              height={40}
-              loading="eager"
-              decoding="async"
-            />
+          <Link href="/" className="kn-logo-link" aria-label="Everyday Digital Solutions home">
+            <span className="kn-logo-mark">
+              <img
+                src="/logo.png"
+                alt="Everyday Digital Solutions"
+                className="kn-logo-mark-img"
+                width={28}
+                height={23}
+                loading="eager"
+                decoding="async"
+              />
+            </span>
             <div className="kn-logo-wordmark">
               <span className="kn-logo-name">Everyday Digital Solutions</span>
               <span className="kn-logo-sub">AI &amp; Custom Software Studio</span>

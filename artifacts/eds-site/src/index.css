@@ -204,16 +204,56 @@
 .kn-logo-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   text-decoration: none;
   line-height: 1;
 }
-.kn-logo-img {
-  display: block;
+
+/* Typographic monogram tile — glass-morphism square containing an italic
+   Boska "E" in the gold accent. Replaces the raster mark so alignment is
+   guaranteed by code rather than by a hand-trimmed PNG. */
+.kn-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
   height: 2.25rem;
-  width: auto;
-  filter: none;
+  border-radius: 0.7rem;
+  background: var(--glass-fill-elevated);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-stroke);
+  box-shadow: var(--glass-shadow-sm), inset 0 1px 0 var(--glass-highlight);
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.kn-logo-mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 50% 0%, var(--accent-soft), transparent 65%);
+  pointer-events: none;
+}
+/* Brand image sitting inside the glass tile. The tile fixes the box; the
+   image fits inside with breathing room so the mark never touches the edge. */
+.kn-logo-mark-img {
+  position: relative;
+  z-index: 1;
+  max-width: 70%;
+  max-height: 70%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+.dark .kn-logo-mark-img {
+  filter: invert(1) brightness(1.05);
+}
+.kn-logo-link:hover .kn-logo-mark {
+  background: var(--glass-fill-elevated);
+  border-color: var(--accent);
 }
 .dark .kn-logo-img {
   filter: invert(1) brightness(1.05);
