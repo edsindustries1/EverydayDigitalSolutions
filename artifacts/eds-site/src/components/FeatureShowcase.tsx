@@ -118,7 +118,7 @@ export function FeatureShowcase() {
                   }`}
                 >
                   <div
-                    className={`mt-0.5 p-2 rounded-md shrink-0 transition-colors duration-300 ${
+                    className={`mt-0.5 p-2 rounded-xl shrink-0 transition-colors duration-300 ${
                       isActive ? "bg-primary text-black" : "bg-[var(--accent-soft)] text-primary"
                     }`}
                   >

@@ -1,8 +1,61 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useMotionValue, useReducedMotion, useTransform, animate } from "framer-motion";
 import { Check } from "lucide-react";
 import { canUseWebGL } from "@/lib/canUseWebGL";
+
+const CYCLING_VERTICALS = ["salons", "clinics", "restaurants", "clubs", "businesses"] as const;
+
+function CyclingWord({ words, intervalMs = 2600 }: { words: readonly string[]; intervalMs?: number }) {
+  const prefersReducedMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % words.length), intervalMs);
+    return () => window.clearInterval(id);
+  }, [words.length, intervalMs, prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return <em className="text-primary font-serif italic">{words[words.length - 1]}</em>;
+  }
+
+  return (
+    <span className="relative inline-block align-baseline" style={{ minWidth: "6.5ch" }}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.em
+          key={words[index]}
+          className="text-primary font-serif italic inline-block"
+          initial={{ opacity: 0, y: "0.35em", filter: "blur(6px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: "-0.35em", filter: "blur(6px)" }}
+          transition={{ duration: 0.55, ease: [0.215, 0.61, 0.355, 1] }}
+        >
+          {words[index]}
+        </motion.em>
+      </AnimatePresence>
+    </span>
+  );
+}
+
+function CountUpNumber({ to, durationMs = 1400, suffix = "" }: { to: number; durationMs?: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const prefersReducedMotion = useReducedMotion();
+  const mv = useMotionValue(prefersReducedMotion ? to : 0);
+  const rounded = useTransform(mv, (v) => `${Math.round(v)}${suffix}`);
+  const [text, setText] = useState(`${prefersReducedMotion ? to : 0}${suffix}`);
+
+  useEffect(() => rounded.on("change", setText), [rounded]);
+
+  useEffect(() => {
+    if (!inView || prefersReducedMotion) return;
+    const controls = animate(mv, to, { duration: durationMs / 1000, ease: [0.215, 0.61, 0.355, 1] });
+    return controls.stop;
+  }, [inView, to, durationMs, mv, prefersReducedMotion]);
+
+  return <span ref={ref}>{text}</span>;
+}
 
 const GlassLens = lazy(() =>
   import("@/components/GlassLens").then((m) => ({ default: m.GlassLens }))
@@ -44,7 +97,7 @@ export function Hero() {
             <span>1 flagship project shipping · taking new clients for 2026</span>
           </motion.div>
           <motion.h1 variants={variants} className="font-serif leading-[1.1] text-foreground mb-6 lg:mb-8" style={{ fontSize: 'clamp(2.2rem, 6vw + 0.5rem, 5.25rem)' }}>
-            The technology partner for <em className="text-primary font-serif italic">Tricity's</em> most ambitious businesses.
+            The technology partner for Tricity's most ambitious <CyclingWord words={CYCLING_VERTICALS} />.
           </motion.h1>
           <motion.p variants={variants} className="text-base lg:text-lg text-muted-foreground mb-8 lg:mb-10 max-w-2xl leading-relaxed">
             We design and ship custom software, AI voice agents, and automation systems — crafted with senior-level precision for service businesses across Chandigarh, Mohali, and Panchkula.
@@ -118,11 +171,15 @@ export function Hero() {
           {/* Stats — each tile is a glass surface that lifts + refracts on hover */}
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-4">
             <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
-              <span className="text-2xl lg:text-3xl font-serif text-primary">30 days</span>
+              <span className="text-2xl lg:text-3xl font-serif text-primary tabular-nums">
+                <CountUpNumber to={30} suffix=" days" />
+              </span>
               <span className="text-xs lg:text-sm text-muted-foreground">Average delivery</span>
             </div>
             <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
-              <span className="text-2xl lg:text-3xl font-serif text-primary">2</span>
+              <span className="text-2xl lg:text-3xl font-serif text-primary tabular-nums">
+                <CountUpNumber to={2} durationMs={900} />
+              </span>
               <span className="text-xs lg:text-sm text-muted-foreground">In-house products built</span>
             </div>
             <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
@@ -130,7 +187,9 @@ export function Hero() {
               <span className="text-xs lg:text-sm text-muted-foreground">Studio &amp; home base</span>
             </div>
             <div className="glass flex flex-col gap-1 lg:gap-2 p-3 lg:p-4 rounded-xl">
-              <span className="text-2xl lg:text-3xl font-serif text-primary">2018</span>
+              <span className="text-2xl lg:text-3xl font-serif text-primary tabular-nums">
+                <CountUpNumber to={2018} durationMs={1800} />
+              </span>
               <span className="text-xs lg:text-sm text-muted-foreground">Founded · 7 years building</span>
             </div>
           </div>
