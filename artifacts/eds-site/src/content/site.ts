@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Everyday Digital Solutions",
-  tagline: "AI & Custom Software Studio for ambitious businesses",
+  tagline: "Premium App Development Studio · App Store & Play Store in 30 Days",
   founded: "2018",
   founder: "Shushant Bangar",
   phone: "+91 9056066006",

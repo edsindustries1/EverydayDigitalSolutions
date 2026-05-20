@@ -99,11 +99,16 @@ export const caseStudies = {
     id: "quasar-salon",
     title: "How we built Tricity's first celebrity-grade salon app — in 30 days.",
     client: "Quasar Salon",
-    tag: "CASE STUDY · CUSTOM MOBILE APP",
+    tag: "CASE STUDY · MOBILE APP + MARKETING SITE",
     meta: {
       timeline: "30 days",
       features: "13 features"
     },
+    liveUrl: "https://quasarsalon.com",
+    deliverables: [
+      { label: "Mobile App", detail: "iOS & Android — bookings, loyalty, payments" },
+      { label: "Marketing Website", detail: "quasarsalon.com — brand, content, SEO" }
+    ],
     screens: [
       "/photos/quasar/screen-01.png",
       "/photos/quasar/screen-02.png",

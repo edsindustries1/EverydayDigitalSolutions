@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { CaseStudy } from "@/components/CaseStudy";
+import { Testimonials } from "@/components/Testimonials";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { AboutSection } from "@/components/AboutSection";
 import { FAQ } from "@/components/FAQ";
@@ -133,8 +134,8 @@ const aggregateRatingSchema = {
     {
       "@type": "Review",
       "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-      "author": { "@type": "Organization", "name": "Quasar Salon" },
-      "reviewBody": "We didn't just get an app. We got a technology partner who understood our business — and shipped in a month. 60% of our bookings moved digital within the first month."
+      "author": { "@type": "Organization", "name": "Quasar Salon", "url": "https://quasarsalon.com" },
+      "reviewBody": "We didn't just get an app. We got a technology partner who understood our business — and shipped in a month. Mobile app and marketing site, both delivered on time."
     }
   ]
 };
@@ -173,6 +174,7 @@ export default function Home() {
         <Hero />
         <ServicesGrid />
         <CaseStudy />
+        <Testimonials />
         <ProcessTimeline />
         <AboutSection />
         <LeadMagnet source="homepage" />

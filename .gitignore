@@ -47,3 +47,6 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Local-only launch kits (not for live site)
+artifacts/eds-site/public/launch-kit/

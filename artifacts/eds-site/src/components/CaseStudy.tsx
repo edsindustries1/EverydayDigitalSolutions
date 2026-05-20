@@ -125,13 +125,14 @@ export function CaseStudy() {
               >
                 Read full case study
               </Link>
-              <Link
-                href="/contact"
-                data-float=""
-                className="btn-glass-neutral text-foreground px-6 py-3 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              <a
+                href={cs.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-glass-neutral text-foreground px-6 py-3 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                Want this for your business
-              </Link>
+                Visit quasarsalon.com <ArrowUpRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>

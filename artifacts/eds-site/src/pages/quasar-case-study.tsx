@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { ArrowUpRight } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -151,6 +152,35 @@ export default function QuasarCaseStudy() {
           <PhoneMockup screens={cs.screens} />
         </div>
 
+        {/* Live deliverables */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            <div className="bg-card border border-border/40 rounded-xl p-6 sm:p-8 flex flex-col">
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Deliverable 01</p>
+              <h3 className="text-xl sm:text-2xl font-serif text-foreground mb-2">Custom Mobile App</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                Native iOS &amp; Android — real-time bookings, automated loyalty, push reminders, in-app payments. Launching May 2026.
+              </p>
+              <span className="text-xs font-mono text-muted-foreground">iOS &middot; Android &middot; Firebase</span>
+            </div>
+            <div className="bg-card border border-border/40 rounded-xl p-6 sm:p-8 flex flex-col">
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Deliverable 02</p>
+              <h3 className="text-xl sm:text-2xl font-serif text-foreground mb-2">Marketing Website</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                Brand-led marketing site for Mohali's most discerning salon — copy, design, build, and SEO. Now live at quasarsalon.com.
+              </p>
+              <a
+                href="https://quasarsalon.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+              >
+                Visit quasarsalon.com <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Story Section */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-32 space-y-12 lg:space-y-16">
           <section>
@@ -217,9 +247,14 @@ export default function QuasarCaseStudy() {
             <Link href="/contact" className="btn-glass-primary px-8 py-4 rounded-full font-medium transition-colors w-full sm:w-auto text-center">
               Let's talk
             </Link>
-            <Link href="/services/mobile-app-development" className="btn-glass-neutral text-foreground px-8 py-4 rounded-full font-medium transition-colors w-full sm:w-auto text-center">
-              Our app service
-            </Link>
+            <a
+              href="https://quasarsalon.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glass-neutral text-foreground px-8 py-4 rounded-full font-medium transition-colors w-full sm:w-auto text-center inline-flex items-center justify-center gap-2"
+            >
+              See it live <ArrowUpRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
 

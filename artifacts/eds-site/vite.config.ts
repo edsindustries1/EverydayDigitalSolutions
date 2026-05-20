@@ -11,6 +11,11 @@ const port = rawPort ? Number(rawPort) : 3000;
 
 const basePath = process.env.BASE_PATH ?? "/";
 
+// Local dev: forward /api/* to a locally-running api-server so forms like the
+// lead-magnet subscriber capture work end-to-end. In production, api-server
+// serves both /api/* and the static site on the same origin (see Dockerfile).
+const apiProxyTarget = process.env.VITE_API_PROXY_TARGET ?? "http://localhost:4000";
+
 if (!isBuild && isReplit && !process.env.PORT) {
   throw new Error("PORT environment variable is required in Replit dev mode.");
 }
@@ -50,6 +55,12 @@ export default defineConfig({
     allowedHosts: true,
     fs: {
       strict: true,
+    },
+    proxy: {
+      "/api": {
+        target: apiProxyTarget,
+        changeOrigin: true,
+      },
     },
   },
   preview: {
