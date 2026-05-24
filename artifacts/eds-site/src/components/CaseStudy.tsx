@@ -73,7 +73,7 @@ export function CaseStudy() {
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1 flex justify-center">
-            <PhoneMockup screens={cs.screens} />
+            <PhoneMockup screens={cs.screens} video={cs.video} />
           </div>
 
           <div className="order-1 lg:order-2 flex flex-col items-start">

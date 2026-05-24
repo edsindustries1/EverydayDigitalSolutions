@@ -147,24 +147,9 @@ export default function QuasarCaseStudy() {
           </div>
         </div>
 
-        {/* Live demo video */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-24 flex flex-col items-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">See it in action</p>
-          <video
-            src="/videos/quasar/quasar-demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            controls
-            preload="metadata"
-            className="w-full max-w-[360px] rounded-2xl border border-border/40 shadow-xl bg-black"
-          />
-        </div>
-
         {/* Mockup Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-32 flex justify-center">
-          <PhoneMockup screens={cs.screens} />
+          <PhoneMockup screens={cs.screens} video={cs.video} />
         </div>
 
         {/* Live deliverables */}
