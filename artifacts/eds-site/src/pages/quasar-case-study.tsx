@@ -149,7 +149,7 @@ export default function QuasarCaseStudy() {
 
         {/* Mockup Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-32 flex justify-center">
-          <PhoneMockup screens={cs.screens} video={cs.video} />
+          <PhoneMockup screens={cs.screens} video={cs.video} poster={cs.videoPoster} />
         </div>
 
         {/* Live deliverables */}

@@ -4,9 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 interface PhoneMockupProps {
   screens?: string[];
   video?: string;
+  poster?: string;
 }
 
-export function PhoneMockup({ screens, video }: PhoneMockupProps) {
+export function PhoneMockup({ screens, video, poster }: PhoneMockupProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -23,17 +24,31 @@ export function PhoneMockup({ screens, video }: PhoneMockupProps) {
   if (!video && (!screens || screens.length === 0)) return null;
 
   if (video) {
+    // The MP4 has the iPhone baked into the frame. We clip the rectangle's
+    // corners to match the device's rounded shape so no dark backdrop shows
+    // through, and drop a soft shadow underneath. No extra bezel.
     return (
-      <video
+      <div
         data-float=""
-        src={video}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="relative mx-auto block w-full max-w-[280px] h-auto transition-transform"
-      />
+        className="quasar-demo relative mx-auto w-full max-w-[380px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] transition-transform"
+        style={{
+          aspectRatio: "760 / 1560",
+          filter: "drop-shadow(0 40px 60px rgba(0, 0, 0, 0.35))",
+        }}
+      >
+        <video
+          className="quasar-demo__video block w-full h-full bg-transparent"
+          style={{ borderRadius: "15.3% / 7.5%" }}
+          src={video}
+          poster={poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Silent demo of booking a service in the Quasar Salon iPhone app"
+        />
+      </div>
     );
   }
 

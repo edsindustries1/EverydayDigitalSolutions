@@ -105,7 +105,8 @@ export const caseStudies = {
       features: "13 features"
     },
     liveUrl: "https://quasarsalon.com",
-    video: "/videos/quasar/quasar-demo.mp4",
+    video: "/videos/quasar/quasar-app-demo.mp4",
+    videoPoster: "/videos/quasar/quasar-app-demo-poster.jpg",
     deliverables: [
       { label: "Mobile App", detail: "iOS & Android — bookings, loyalty, payments" },
       { label: "Marketing Website", detail: "quasarsalon.com — brand, content, SEO" }
