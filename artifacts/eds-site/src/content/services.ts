@@ -2,10 +2,10 @@ export const services = [
   {
     id: "01",
     title: "Custom Mobile Apps",
-    tagline: "Built to your brand. Loved by your customers.",
+    tagline: "App Store-grade. Built around your brand.",
     startingAt: "₹3 Lakh",
     href: "/services/mobile-app-development",
-    bestFor: "Salons, clinics, gyms, restaurants, wellness brands",
+    bestFor: "Premium salons, clinics, gyms, restaurants, wellness brands",
     bullets: [
       "Native iOS & Android, designed from the ground up",
       "Bookings, payments, loyalty programmes, push notifications",

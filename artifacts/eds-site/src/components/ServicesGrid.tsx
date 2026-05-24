@@ -30,10 +30,10 @@ export function ServicesGrid() {
           className="max-w-3xl mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-serif mb-6">
-            Three ways we build <em className="text-primary italic">competitive advantage</em> into your business.
+            One studio. Three pillars. <em className="text-primary italic">Apps are the heart</em>.
           </h2>
           <p className="text-lg text-muted-foreground">
-            From customer-facing products to the AI systems running behind the scenes. Each one engineered to perform — not just to ship.
+            Premium iOS and Android apps are what we lead with. AI voice agents and automation systems are how we extend the surface area — handling calls, follow-up, and back-office work the moment your app goes live.
           </p>
         </motion.div>
 

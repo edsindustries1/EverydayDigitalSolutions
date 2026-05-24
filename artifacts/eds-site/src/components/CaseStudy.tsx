@@ -117,7 +117,7 @@ export function CaseStudy() {
               <footer className="text-sm text-muted-foreground">— {cs.quote.author}</footer>
             </blockquote>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 items-center">
               <Link
                 href="/work/quasar-salon"
                 data-float=""
@@ -132,6 +132,20 @@ export function CaseStudy() {
                 className="inline-flex items-center gap-2 btn-glass-neutral text-foreground px-6 py-3 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Visit quasarsalon.com <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <a
+                href="https://apps.apple.com/app/id6769149189"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Quasar Salon on the App Store"
+                className="inline-flex items-center transition-opacity hover:opacity-80"
+              >
+                <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="h-10 w-auto">
+                  <rect width="120" height="40" rx="6" fill="#000" />
+                  <path d="M22 11.4c.7-.8 1.2-2 1.1-3.1-.9 0-2.1.6-2.7 1.4-.6.7-1.2 1.9-1 3 1 .1 2-.5 2.6-1.3zm1.1 1.7c-1.5-.1-2.7.8-3.4.8-.7 0-1.7-.8-2.9-.7-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 6.9 1.1 9.2.7 1.1 1.6 2.4 2.8 2.3 1.1 0 1.5-.7 2.9-.7 1.3 0 1.7.7 2.9.7 1.2 0 2-1.1 2.7-2.3.8-1.3 1.2-2.5 1.2-2.6 0 0-2.3-.9-2.3-3.5 0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.8z" fill="#fff" />
+                  <text x="36" y="17" fontFamily="Helvetica, Arial, sans-serif" fontSize="8" fill="#fff">Download on the</text>
+                  <text x="36" y="30" fontFamily="Helvetica, Arial, sans-serif" fontSize="14" fontWeight="600" fill="#fff">App Store</text>
+                </svg>
               </a>
             </div>
           </div>

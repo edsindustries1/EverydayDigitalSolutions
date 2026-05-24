@@ -2,6 +2,7 @@ import { SEO } from "@/components/SEO";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ServicesGrid } from "@/components/ServicesGrid";
+import { WhyAppNow } from "@/components/WhyAppNow";
 import { CaseStudy } from "@/components/CaseStudy";
 import { Testimonials } from "@/components/Testimonials";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
@@ -157,10 +158,10 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Everyday Digital Solutions — AI & Custom Software Studio · Mohali, India"
-        description="Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses across Chandigarh, Mohali & Jalandhar. Shipped in 30 days."
+        title="Everyday Digital Solutions — Premium iOS & Android App Development · App Store + Play Store in 30 days"
+        description="Premium native iOS and Android apps for ambitious service brands across India. App Store + Play Store submission in 30 days. Backed by AI voice agents and automation systems. Mohali studio, senior team, fixed price."
         canonical="/"
-        ogImageAlt="Everyday Digital Solutions — AI & custom software studio for Tricity's most ambitious businesses"
+        ogImageAlt="Everyday Digital Solutions — premium app development studio for the App Store and Play Store"
         jsonLd={[localBusinessSchema, aggregateRatingSchema, faqSchema]}
       />
       <a
@@ -172,6 +173,7 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="pt-[5.75rem]">
         <Hero />
+        <WhyAppNow />
         <ServicesGrid />
         <CaseStudy />
         <Testimonials />

@@ -55,6 +55,7 @@ const routes: SitemapEntry[] = [
   { path: "/solutions/restaurants-and-cafes",              changefreq: "monthly", priority: "0.85" },
 
   { path: "/blog",                                         changefreq: "weekly",  priority: "0.8" },
+  { path: "/blog/why-premium-brands-need-an-app-in-2026",  changefreq: "monthly", priority: "0.8" },
   { path: "/blog/ai-voice-agents-real-estate-india",       changefreq: "monthly", priority: "0.7" },
   { path: "/blog/custom-app-vs-off-the-shelf-chandigarh",  changefreq: "monthly", priority: "0.7" },
   { path: "/blog/app-development-cost-india-2025",         changefreq: "monthly", priority: "0.7" },

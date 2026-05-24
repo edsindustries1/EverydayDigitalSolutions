@@ -26,16 +26,16 @@ export const servicePages: Record<string, ServicePage> = {
   "mobile-app-development": {
     slug: "mobile-app-development",
     title: "Custom Mobile App Development",
-    tagline: "Native iOS & Android apps for ambitious service businesses.",
-    heroHeadline: "Your business deserves an app built around it — not a template built around everyone.",
+    tagline: "Premium iOS & Android apps for brands that don't ship templates.",
+    heroHeadline: "App Store-grade apps for the brands that won't settle for a template.",
     heroParagraph:
-      "We design and build custom mobile apps for service businesses across Chandigarh, Mohali, and Jalandhar — from first wireframe to App Store and Play Store launch. Every app we ship reflects your brand, matches your workflow, and earns a real return.",
-    problemHeading: "Off-the-shelf apps look generic and perform worse",
+      "Native iOS and Android — designed to Apple's Human Interface Guidelines and Material Design 3, shipped to the App Store and Play Store in 30 days. Your brand, your workflow, your competitive moat. From first wireframe to launch day, handled by a senior team that has done this before.",
+    problemHeading: "Your customers can tell a template when they see one.",
     problemText:
-      "Booking platforms and white-label apps give every business the same experience. Your clients can tell. Generic flows, restricted branding, and missing integrations create friction that costs you bookings, retention, and trust. When the app is the first touchpoint of your service experience, a template is not good enough.",
-    solutionHeading: "Custom-built, shipped in 30 days",
+      "Off-the-shelf booking apps give every business the same generic flow, restricted branding, and clunky integrations. For a premium service brand, the gap between in-salon experience and the app experience erodes trust on the very first touch — the customer who tipped 20% last visit won't return through a clunky white-label booking screen. The app is now part of the brand. A template is not good enough.",
+    solutionHeading: "Native, on-brand, App Store-grade — shipped in 30 days.",
     solutionText:
-      "We build native iOS and Android apps from scratch — designed to your brand, scoped around your actual workflow, and deployed in four to six weeks. No compromises on the features that matter. No bloat from features you will never use. Just a focused, fast app that your clients actually open.",
+      "We design and build native iOS and Android apps from scratch — to Apple's Human Interface Guidelines and Material Design 3, with your typography, your palette, your tone of voice. Every screen reflects the brand. Every flow matches your operations. Fixed price, fixed deadline, App Store and Play Store submission included. The result is an app your customers want to keep on their home screen — and a competitive position your competitors can't copy in a weekend.",
     features: [
       { title: "Custom UI/UX Design", description: "Every screen designed to your brand guidelines. Your palette, your typography, your feel." },
       { title: "Real-Time Booking", description: "Live availability, instant confirmation, multi-location support, and stylist or practitioner selection." },
@@ -71,9 +71,9 @@ export const servicePages: Record<string, ServicePage> = {
         a: "Fully. On project completion you receive the complete source code, App Store and Play Store listings in your accounts, and all backend credentials. We retain no ongoing rights to your intellectual property.",
       },
     ],
-    seoTitle: "Custom Mobile App Development Company — Chandigarh, Mohali, India",
+    seoTitle: "Premium iOS & Android App Development — App Store + Play Store in 30 days",
     seoDescription:
-      "We build custom iOS and Android apps for service businesses in Chandigarh, Mohali, and Jalandhar. Bookings, payments, loyalty, push notifications — shipped in 30 days. Senior-led team, fixed price.",
+      "Native iOS and Android apps built to Apple HIG and Material Design 3, for premium service brands across India. App Store + Play Store submission included, 30-day delivery, fixed price. Mohali studio.",
     canonical: "/services/mobile-app-development",
   },
 

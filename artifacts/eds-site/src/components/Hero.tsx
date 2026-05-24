@@ -94,13 +94,13 @@ export function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span>1 flagship project shipping · taking new clients for 2026</span>
+            <span>App Store + Play Store · 30-day delivery · taking 2026 clients</span>
           </motion.div>
           <motion.h1 variants={variants} className="font-serif leading-[1.1] text-foreground mb-6 lg:mb-8" style={{ fontSize: 'clamp(2.2rem, 6vw + 0.5rem, 5.25rem)' }}>
-            The technology partner for Tricity's most ambitious <CyclingWord words={CYCLING_VERTICALS} />.
+            Premium iOS &amp; Android apps for Tricity's most ambitious <CyclingWord words={CYCLING_VERTICALS} />.
           </motion.h1>
           <motion.p variants={variants} className="text-base lg:text-lg text-muted-foreground mb-8 lg:mb-10 max-w-2xl leading-relaxed">
-            We design and ship custom software, AI voice agents, and automation systems — crafted with senior-level precision for service businesses across Chandigarh, Mohali, and Panchkula.
+            Native apps, shipped to the App Store and Play Store in 30 days — designed to your brand, not a template. Backed by AI voice agents and automation systems when you want the full studio.
           </motion.p>
           <motion.div variants={variants} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
@@ -115,7 +115,7 @@ export function Hero() {
               data-float=""
               className="w-full sm:w-auto text-center glass text-foreground px-6 py-3.5 sm:py-3 rounded-full font-medium hover:brightness-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              See our work
+              See the Quasar app
             </a>
           </motion.div>
         </div>
@@ -163,7 +163,14 @@ export function Hero() {
                 <div className="w-full py-2 bg-primary rounded-full text-center text-[11px] font-bold text-black tracking-wide">
                   Book Now
                 </div>
-                <p className="text-center text-[10px] text-muted-foreground mt-2">Shipped in 30 days · Launching May 2026</p>
+                <a
+                  href="https://apps.apple.com/app/id6769149189"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center text-[10px] text-muted-foreground hover:text-foreground transition-colors mt-2"
+                >
+                  Shipped in 30 days · Live on the App Store →
+                </a>
               </div>
             </div>
           </div>
