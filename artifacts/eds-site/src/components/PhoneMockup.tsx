@@ -22,6 +22,21 @@ export function PhoneMockup({ screens, video }: PhoneMockupProps) {
 
   if (!video && (!screens || screens.length === 0)) return null;
 
+  if (video) {
+    return (
+      <video
+        data-float=""
+        src={video}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="relative mx-auto w-full max-w-[280px] aspect-[9/19.5] rounded-[2.5rem] shadow-2xl object-cover object-center bg-background transition-transform"
+      />
+    );
+  }
+
   return (
     <div
       data-float=""
@@ -32,30 +47,18 @@ export function PhoneMockup({ screens, video }: PhoneMockupProps) {
 
       {/* Screen */}
       <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-muted">
-        {video ? (
-          <video
-            src={video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentIndex}
+            src={screens![currentIndex]}
+            alt={`Quasar Salon app — screen ${currentIndex + 1}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover object-top"
           />
-        ) : (
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={currentIndex}
-              src={screens![currentIndex]}
-              alt={`Quasar Salon app — screen ${currentIndex + 1}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.4, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full object-cover object-top"
-            />
-          </AnimatePresence>
-        )}
+        </AnimatePresence>
       </div>
     </div>
   );
