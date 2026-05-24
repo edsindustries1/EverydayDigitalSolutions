@@ -32,7 +32,7 @@ export function PhoneMockup({ screens, video }: PhoneMockupProps) {
         loop
         playsInline
         preload="metadata"
-        className="relative mx-auto w-full max-w-[280px] aspect-[9/19.5] rounded-[2.5rem] shadow-2xl object-cover object-center bg-background transition-transform"
+        className="relative mx-auto block w-full max-w-[280px] h-auto transition-transform"
       />
     );
   }
