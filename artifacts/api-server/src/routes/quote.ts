@@ -3,6 +3,8 @@ import OpenAI from "openai";
 import { GenerateQuoteBody } from "@workspace/api-zod";
 import { db, toolRunsTable } from "@workspace/db";
 import { randomBytes } from "crypto";
+import { sendNotificationEmail, formatQuoteEmail } from "../lib/email";
+import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
 
@@ -400,6 +402,27 @@ scopeItems must be exactly 6 items. Each is one sentence describing what will ac
     scopeItems,
     validDays: VALID_DAYS,
   });
+
+  // Fire notification email AFTER responding so a slow Resend never stalls
+  // the user. Best-effort — quote response is the source of truth.
+  void sendNotificationEmail(
+    formatQuoteEmail({
+      contactName:      input.contactName,
+      businessName:     input.businessName ?? null,
+      contactEmail:     input.email ?? null,
+      industry:         input.industry,
+      projectType:      input.projectType,
+      projectTypeLabel: BASE_LABEL[input.projectType] ?? input.projectType,
+      features:         selectedFeatureLabels,
+      scale:            input.scale,
+      timeline:         input.timeline,
+      projectDescription: input.projectDescription,
+      total,
+      minDays,
+      maxDays,
+      quoteRef,
+    }),
+  ).catch((err) => logger.error({ err, quoteRef }, "Quote email dispatch threw"));
 });
 
 export default router;

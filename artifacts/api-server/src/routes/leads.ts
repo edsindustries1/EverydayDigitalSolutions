@@ -4,6 +4,7 @@ import { db, leadsTable } from "@workspace/db";
 import { CreateLeadBody } from "@workspace/api-zod";
 import { sendWhatsApp, formatLeadMessage } from "../lib/whatsapp";
 import { scheduleRetry } from "../lib/whatsapp-retry";
+import { sendNotificationEmail, formatLeadEmail } from "../lib/email";
 import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
@@ -54,9 +55,9 @@ router.post("/leads", async (req, res): Promise<void> => {
   req.log.info({ leadId: row.id }, "Lead captured");
   res.status(201).json(row);
 
-  // Fire WhatsApp notification AFTER responding so a slow/failing CallMeBot
-  // never stalls the user. Persisted lead is the source of truth; this is
-  // best-effort enrichment of `whatsappNotificationSent`.
+  // Fire notifications AFTER responding so a slow/failing provider never
+  // stalls the user. Persisted lead is the source of truth; both channels
+  // are best-effort and independent.
   void (async () => {
     try {
       const sent = await sendWhatsApp(formatLeadMessage(row));
@@ -75,6 +76,10 @@ router.post("/leads", async (req, res): Promise<void> => {
       await scheduleRetry(row.id, 0);
     }
   })();
+
+  void sendNotificationEmail(formatLeadEmail(row)).catch((err) =>
+    logger.error({ err, leadId: row.id }, "Lead email dispatch threw"),
+  );
 });
 
 export default router;
