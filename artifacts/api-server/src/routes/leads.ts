@@ -1,9 +1,6 @@
 import { Router, type IRouter } from "express";
-import { eq } from "drizzle-orm";
 import { db, leadsTable } from "@workspace/db";
 import { CreateLeadBody } from "@workspace/api-zod";
-import { sendWhatsApp, formatLeadMessage } from "../lib/whatsapp";
-import { scheduleRetry } from "../lib/whatsapp-retry";
 import { sendNotificationEmail, formatLeadEmail } from "../lib/email";
 import { withTimeout } from "../lib/with-timeout";
 import { logger } from "../lib/logger";
@@ -65,54 +62,22 @@ router.post("/leads", async (req, res): Promise<void> => {
 
   res.status(201).json(savedRow ?? { id: null, ...input });
 
-  // Fire notifications AFTER responding. Both are best-effort and independent.
-  // We use the input directly so notifications work even when the DB is down.
-  const notifyPayload = {
-    name: input.name,
-    businessName: input.businessName ?? null,
-    whatsappNumber: input.whatsappNumber,
-    email: input.email ?? null,
-    city: input.city,
-    industry: input.industry,
-    problem: input.problem,
-    goalIn3Months: input.goalIn3Months,
-    budget: input.budget,
-    timeline: input.timeline,
-  };
-
-  void (async () => {
-    try {
-      const sent = await sendWhatsApp(formatLeadMessage(notifyPayload));
-      if (sent && savedRow) {
-        try {
-          await withTimeout(
-            db
-              .update(leadsTable)
-              .set({ whatsappNotificationSent: true })
-              .where(eq(leadsTable.id, savedRow.id)),
-            DB_TIMEOUT_MS,
-            "leads.update.whatsappSent",
-          );
-        } catch (err) {
-          logger.warn({ err, leadId: savedRow.id }, "Failed to flag whatsappSent");
-        }
-        logger.info({ leadId: savedRow.id }, "WhatsApp delivered on first try");
-      } else if (!sent && savedRow) {
-        logger.warn({ leadId: savedRow.id }, "WhatsApp first attempt failed — queuing retry");
-        await scheduleRetry(savedRow.id, 0).catch((err) =>
-          logger.error({ err, leadId: savedRow!.id }, "scheduleRetry failed"),
-        );
-      } else if (!sent) {
-        logger.warn("WhatsApp send failed and no DB row to retry against");
-      }
-    } catch (err) {
-      logger.error({ err }, "Async WhatsApp dispatch threw");
-    }
-  })();
-
-  void sendNotificationEmail(formatLeadEmail(notifyPayload)).catch((err) =>
-    logger.error({ err }, "Lead email dispatch threw"),
-  );
+  // Fire email notification AFTER responding. We use the validated input
+  // directly so it works even when the DB is unavailable.
+  void sendNotificationEmail(
+    formatLeadEmail({
+      name: input.name,
+      businessName: input.businessName ?? null,
+      whatsappNumber: input.whatsappNumber,
+      email: input.email ?? null,
+      city: input.city,
+      industry: input.industry,
+      problem: input.problem,
+      goalIn3Months: input.goalIn3Months,
+      budget: input.budget,
+      timeline: input.timeline,
+    }),
+  ).catch((err) => logger.error({ err }, "Lead email dispatch threw"));
 });
 
 export default router;
