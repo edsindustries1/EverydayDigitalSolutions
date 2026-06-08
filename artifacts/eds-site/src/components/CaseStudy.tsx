@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { caseStudies } from "@/content/case-studies";
 import { PhoneMockup } from "./PhoneMockup";
 import { ChauffeurPhoneMockup } from "./ChauffeurPhoneMockup";
+import { DentalPhoneMockup } from "./DentalPhoneMockup";
 
 const statusColors: Record<string, string> = {
   TRANSFERRED: "text-emerald-400 bg-emerald-400/10",
@@ -20,6 +21,7 @@ export function CaseStudy() {
   const prefersReducedMotion = useReducedMotion();
   const cs = caseStudies.quasar;
   const et = caseStudies.everywhereTransfers;
+  const bd = caseStudies.bramptonDentists;
   const oh = caseStudies.openHumana;
   const oca = caseStudies.oneClickAssist;
 
@@ -45,10 +47,10 @@ export function CaseStudy() {
         className="mb-5 text-center"
       >
         <h2 className="text-4xl md:text-5xl font-serif mb-4">
-          Selected work — <em className="text-primary italic">built &amp; shipped</em>.
+          Our craft — <em className="text-primary italic">built &amp; shipped</em>.
         </h2>
         <p className="text-muted-foreground text-base max-w-xl mx-auto">
-          Two client builds and two in-house products. No fabricated case studies.
+          Three client builds and two in-house products, for clients from Tricity to the US and Canada. No fabricated case studies.
         </p>
       </motion.div>
 
@@ -221,6 +223,77 @@ export function CaseStudy() {
 
           <div className="order-2 lg:order-2 flex justify-center">
             <ChauffeurPhoneMockup />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Featured — Brampton Dentists */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={cardFade}
+        className="relative bg-card border border-border/40 rounded-xl overflow-hidden p-6 md:p-10 lg:p-16 mb-20"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--accent-soft)_0%,transparent_70%)] opacity-20 pointer-events-none" />
+
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="order-2 lg:order-1 flex justify-center">
+            <DentalPhoneMockup />
+          </div>
+
+          <div className="order-1 lg:order-2 flex flex-col items-start">
+            <span className="inline-block bg-[var(--accent-soft)] text-primary px-3 py-1 text-xs font-bold tracking-wider rounded-full mb-6">
+              {bd.tag}
+            </span>
+
+            <h3 className="text-3xl lg:text-4xl font-serif mb-10 leading-tight">
+              A dental clinic app where patients{" "}
+              <em className="text-primary italic">book in a few taps</em>.
+            </h3>
+
+            <div className="grid grid-cols-2 gap-6 w-full mb-12 border-y border-border/40 py-6">
+              <div className="flex flex-col">
+                <span className="text-2xl font-serif text-primary">{bd.meta.timeline}</span>
+                <span className="text-xs text-muted-foreground uppercase tracking-widest mt-1">Status</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-serif text-primary">{bd.meta.features}</span>
+                <span className="text-xs text-muted-foreground uppercase tracking-widest mt-1">Platforms</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 mb-12">
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Problem</h4>
+                <p className="text-sm text-foreground/80 leading-relaxed">{bd.story.problem}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">What We're Building</h4>
+                <p className="text-sm text-foreground/80 leading-relaxed">{bd.story.solution}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Status</h4>
+                <p className="text-sm text-foreground/80 leading-relaxed">{bd.story.result}</p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-4 items-center">
+              <a
+                href={bd.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-glass-primary px-6 py-3 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                Visit bramptondentists.ca <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <Link
+                href="/contact"
+                className="btn-glass-neutral text-foreground px-6 py-3 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                Build something similar
+              </Link>
+            </div>
           </div>
         </div>
       </motion.div>

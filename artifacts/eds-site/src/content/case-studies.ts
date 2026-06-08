@@ -173,6 +173,35 @@ export const caseStudies = {
       "Push notifications for pickups",
       "Ratings & digital receipts"
     ]
+  },
+
+  bramptonDentists: {
+    id: "brampton-dentists",
+    title: "We're building a patient booking app for a Canadian dental clinic.",
+    client: "Brampton Dentists",
+    tag: "CASE STUDY · MOBILE APP · CANADA",
+    meta: {
+      timeline: "In build",
+      features: "iOS & Android"
+    },
+    liveUrl: "https://bramptondentists.ca",
+    story: {
+      problem: "Dental clinics still run scheduling over the phone and on paper. Patients play phone tag to book a cleaning, no-shows pile up without reminders, and front-desk staff lose hours to the calendar instead of to patients.",
+      solution: "We're building a native iOS & Android app for Brampton Dentists where patients book or reschedule in a few taps, pick their dentist and service, fill intake forms ahead of time, and get automatic reminders. Behind it sits a clinic view for managing the day's chairs and patients.",
+      result: "The app is currently in build for our Canadian client and launching soon. We'll update this page with real usage numbers once it's live — no made-up metrics here."
+    },
+    features: [
+      "Online appointment booking",
+      "Dentist & service selection",
+      "Automatic appointment reminders",
+      "Reschedule & cancel in-app",
+      "New-patient intake forms",
+      "Treatment & visit history",
+      "Push notifications",
+      "Insurance details on file",
+      "In-app messaging with the clinic",
+      "Front-desk scheduling dashboard"
+    ]
   }
 };
 
@@ -196,6 +225,16 @@ export const portfolioProjects = [
     tags: ["React Native", "iOS & Android", "Booking"],
     hasFullCaseStudy: false,
     caseStudyUrl: "https://www.everywheretransfers.com"
+  },
+  {
+    id: "brampton-dentists",
+    category: "Custom Mobile App",
+    client: "Brampton Dentists (Canada)",
+    title: "Patient booking app for a Canadian dental clinic",
+    outcome: "Native iOS & Android app with appointment booking, reminders, intake forms, and a front-desk dashboard. In build, launching soon.",
+    tags: ["React Native", "iOS & Android", "Healthcare"],
+    hasFullCaseStudy: false,
+    caseStudyUrl: "https://bramptondentists.ca"
   },
   {
     id: "open-humana",

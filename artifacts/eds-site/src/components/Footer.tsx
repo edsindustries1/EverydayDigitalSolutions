@@ -38,7 +38,7 @@ export function Footer() {
           <div>
             <h4 className="font-serif text-base lg:text-lg mb-5">Studio</h4>
             <ul className="flex flex-col gap-4 md:gap-3">
-              <li><a href="/#work" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Work</a></li>
+              <li><Link href="/craft" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Craft</Link></li>
               <li><a href="/#process" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Process</a></li>
               <li><a href="/#about" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">About</a></li>
               <li><Link href="/blog" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
@@ -104,6 +104,7 @@ export function Footer() {
           <div>
             <h4 className="font-serif text-base mb-4">Selected Work</h4>
             <ul className="flex flex-col gap-2">
+              <li><Link href="/craft" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">The Craft — Gallery</Link></li>
               <li><Link href="/work/quasar-salon" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Quasar Salon — Mobile App</Link></li>
               <li><Link href="/work/open-humana" className="text-base md:text-sm text-muted-foreground hover:text-foreground transition-colors">Open Humana — AI Dialler SaaS</Link></li>
             </ul>

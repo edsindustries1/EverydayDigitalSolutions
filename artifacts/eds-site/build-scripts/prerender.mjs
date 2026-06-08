@@ -52,6 +52,7 @@ const ROUTES = [
   // Core pages
   { urlPath: "",                                    url: "/" },
   { urlPath: "contact",                             url: "/contact" },
+  { urlPath: "craft",                               url: "/craft" },
   { urlPath: "work/quasar-salon",                   url: "/work/quasar-salon" },
   { urlPath: "work/open-humana",                    url: "/work/open-humana" },
 

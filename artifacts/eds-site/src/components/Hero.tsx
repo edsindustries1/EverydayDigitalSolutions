@@ -97,10 +97,10 @@ export function Hero() {
             <span>App Store + Play Store · 30-day delivery · taking 2026 clients</span>
           </motion.div>
           <motion.h1 variants={variants} className="font-serif leading-[1.1] text-foreground mb-6 lg:mb-8" style={{ fontSize: 'clamp(2.2rem, 6vw + 0.5rem, 5.25rem)' }}>
-            Premium iOS &amp; Android apps for Tricity's most ambitious <CyclingWord words={CYCLING_VERTICALS} />.
+            Premium iOS &amp; Android apps, <em className="text-primary italic">crafted</em> by Everyday Digital Solutions.
           </motion.h1>
           <motion.p variants={variants} className="text-base lg:text-lg text-muted-foreground mb-8 lg:mb-10 max-w-2xl leading-relaxed">
-            Native apps, shipped to the App Store and Play Store in 30 days — designed to your brand, not a template. Backed by AI voice agents and automation systems when you want the full studio.
+            Extraordinary craft for everyday businesses — designed to your brand and shipped to the App Store and Play Store in 30 days. Backed by AI voice agents and automation systems when you want the full studio.
           </motion.p>
           <motion.div variants={variants} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
@@ -110,13 +110,13 @@ export function Hero() {
             >
               Start a Project
             </Link>
-            <a
-              href="#work"
+            <Link
+              href="/craft"
               data-float=""
               className="w-full sm:w-auto text-center glass text-foreground px-6 py-3.5 sm:py-3 rounded-full font-medium hover:brightness-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              See the Quasar app
-            </a>
+              See our craft
+            </Link>
           </motion.div>
         </div>
 

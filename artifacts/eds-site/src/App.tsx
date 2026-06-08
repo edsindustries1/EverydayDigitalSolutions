@@ -18,6 +18,7 @@ import Terms from "@/pages/terms";
 import Cookies from "@/pages/cookies";
 import QuasarCaseStudy from "@/pages/quasar-case-study";
 import OpenHumanaCaseStudy from "@/pages/work/open-humana";
+import Craft from "@/pages/craft";
 import Admin from "@/pages/admin";
 import RequestReview from "@/pages/admin/request-review";
 import AppCostGuide2026 from "@/pages/resources/app-cost-guide-2026";
@@ -75,6 +76,7 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/admin/request-review" component={RequestReview} />
       <Route path="/resources/app-cost-guide-2026" component={AppCostGuide2026} />
+      <Route path="/craft" component={Craft} />
       <Route path="/work/quasar-salon" component={QuasarCaseStudy} />
       <Route path="/work/open-humana" component={OpenHumanaCaseStudy} />
 

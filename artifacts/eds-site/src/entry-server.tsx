@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Contact from "@/pages/contact";
 import QuasarCaseStudy from "@/pages/quasar-case-study";
 import OpenHumanaCaseStudy from "@/pages/work/open-humana";
+import Craft from "@/pages/craft";
 import GetAQuote from "@/pages/get-a-quote";
 import Admin from "@/pages/admin";
 import RequestReview from "@/pages/admin/request-review";
@@ -68,6 +69,7 @@ export function render(url: string): string {
               <Route path="/admin" component={Admin} />
               <Route path="/admin/request-review" component={RequestReview} />
               <Route path="/resources/app-cost-guide-2026" component={AppCostGuide2026} />
+              <Route path="/craft" component={Craft} />
               <Route path="/work/quasar-salon" component={QuasarCaseStudy} />
               <Route path="/work/open-humana" component={OpenHumanaCaseStudy} />
               <Route path="/get-a-quote" component={GetAQuote} />

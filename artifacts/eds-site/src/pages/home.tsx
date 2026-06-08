@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { WhyAppNow } from "@/components/WhyAppNow";
-import { CaseStudy } from "@/components/CaseStudy";
 import { Testimonials } from "@/components/Testimonials";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { AboutSection } from "@/components/AboutSection";
@@ -21,7 +20,7 @@ const localBusinessSchema = {
   "url": "https://everydaydigitalsolutions.com",
   "logo": "https://everydaydigitalsolutions.com/logo.png",
   "image": "https://everydaydigitalsolutions.com/opengraph.jpg",
-  "description": "Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses. Studio based in Mohali, Punjab — built with precision, shipped in 30 days.",
+  "description": "Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses worldwide. Studio based in Mohali, Punjab, serving clients across India, the United States, and Canada — built with precision, shipped in 30 days.",
   "telephone": "+91-9056066006",
   "email": "admin@everydaydigitalsolutions.com",
   "priceRange": "₹₹",
@@ -43,7 +42,10 @@ const localBusinessSchema = {
     { "@type": "City", "name": "Mohali" },
     { "@type": "City", "name": "Panchkula" },
     { "@type": "City", "name": "Jalandhar" },
-    { "@type": "AdministrativeArea", "name": "Punjab" }
+    { "@type": "AdministrativeArea", "name": "Punjab" },
+    { "@type": "Country", "name": "India" },
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" }
   ],
   "location": [
     {
@@ -159,7 +161,7 @@ export default function Home() {
     <>
       <SEO
         title="Everyday Digital Solutions — Premium iOS & Android App Development · App Store + Play Store in 30 days"
-        description="Premium native iOS and Android apps for ambitious service brands across India. App Store + Play Store submission in 30 days. Backed by AI voice agents and automation systems. Mohali studio, senior team, fixed price."
+        description="Premium native iOS and Android apps for ambitious service brands across India, the US, and Canada. App Store + Play Store submission in 30 days. Backed by AI voice agents and automation systems. Mohali studio, senior team, fixed price."
         canonical="/"
         ogImageAlt="Everyday Digital Solutions — premium app development studio for the App Store and Play Store"
         jsonLd={[localBusinessSchema, aggregateRatingSchema, faqSchema]}
@@ -175,7 +177,6 @@ export default function Home() {
         <Hero />
         <WhyAppNow />
         <ServicesGrid />
-        <CaseStudy />
         <Testimonials />
         <ProcessTimeline />
         <AboutSection />
