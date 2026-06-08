@@ -144,6 +144,35 @@ export const caseStudies = {
       text: "We didn't just get an app. We got a technology partner who understood our business — and shipped in a month.",
       author: "Owner, Quasar Salon"
     }
+  },
+
+  everywhereTransfers: {
+    id: "everywhere-transfers",
+    title: "We're building a premium chauffeur booking app for door-to-door transfers.",
+    client: "Everywhere Transfers",
+    tag: "CASE STUDY · MOBILE APP",
+    meta: {
+      timeline: "In build",
+      features: "iOS & Android"
+    },
+    liveUrl: "https://www.everywheretransfers.com",
+    story: {
+      problem: "Premium chauffeur services still run on phone calls, WhatsApp threads, and manual dispatch. Customers can't see an upfront price, lock in a vehicle class, or track their chauffeur — and operators juggle bookings across texts and spreadsheets.",
+      solution: "We're building a native iOS & Android app for Everywhere Transfers where customers book a chauffeur in a few taps: set pickup and drop-off, choose a vehicle class, get an upfront quote, and track their assigned driver in real time. Behind it sits a dispatch view for assigning chauffeurs and managing the day's transfers.",
+      result: "The app is currently in build and launching soon. We'll update this page with real usage numbers once it's live — no made-up metrics here."
+    },
+    features: [
+      "Door-to-door transfer booking",
+      "Upfront fare quotes",
+      "Vehicle class selection",
+      "Airport & corporate transfers",
+      "Real-time chauffeur tracking",
+      "Saved addresses & trip history",
+      "In-app payments",
+      "Driver dispatch & assignment",
+      "Push notifications for pickups",
+      "Ratings & digital receipts"
+    ]
   }
 };
 
@@ -157,6 +186,16 @@ export const portfolioProjects = [
     tags: ["React Native", "Firebase", "iOS & Android"],
     hasFullCaseStudy: true,
     caseStudyUrl: "/work/quasar-salon"
+  },
+  {
+    id: "everywhere-transfers",
+    category: "Custom Mobile App",
+    client: "Everywhere Transfers",
+    title: "Premium chauffeur booking app for door-to-door transfers",
+    outcome: "Native iOS & Android booking app with upfront quotes, vehicle classes, and live chauffeur tracking. In build, launching soon.",
+    tags: ["React Native", "iOS & Android", "Booking"],
+    hasFullCaseStudy: false,
+    caseStudyUrl: "https://www.everywheretransfers.com"
   },
   {
     id: "open-humana",
