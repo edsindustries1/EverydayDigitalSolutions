@@ -58,6 +58,7 @@ const ROUTES = [
 
   // Service pages
   { urlPath: "services/mobile-app-development",     url: "/services/mobile-app-development" },
+  { urlPath: "services/web-design-development",      url: "/services/web-design-development" },
   { urlPath: "services/ai-voice-agents",             url: "/services/ai-voice-agents" },
   { urlPath: "services/automation-systems",          url: "/services/automation-systems" },
 

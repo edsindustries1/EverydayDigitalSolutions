@@ -184,4 +184,58 @@ export const servicePages: Record<string, ServicePage> = {
       "We build custom business automation systems for Indian companies — WhatsApp automation, n8n workflows, CRM integration, AI agents, and managed operations. For businesses ready to scale without adding headcount.",
     canonical: "/services/automation-systems",
   },
+
+  "web-design-development": {
+    slug: "web-design-development",
+    title: "Web Design & Development",
+    tagline: "Premium websites that load fast, rank well, and turn visitors into customers.",
+    heroHeadline: "A website as considered as your storefront — designed to convert, built to last.",
+    heroParagraph:
+      "We design and build fast, SEO-ready websites for ambitious brands across India — bespoke design, hand-built front-end, and a content system your team can actually run. No drag-and-drop templates, no bloated page builders. From first wireframe to launch day, handled by a senior team in Mohali.",
+    problemHeading: "A slow, templated website quietly loses you customers every day.",
+    problemText:
+      "Most small-business websites run on bloated templates that take five seconds to load, look like a hundred competitors, and bury the one thing a visitor came to do — book, call, or buy. Google penalises the slow load. The visitor leaves before the hero image even finishes rendering. And the business never sees the lead it just lost. For a premium brand, a generic website quietly undersells everything you have built offline.",
+    solutionHeading: "Bespoke, lightning-fast, conversion-first — built around your brand.",
+    solutionText:
+      "We design every page around the single action you want a visitor to take, then hand-build it for speed — sub-second loads and a 90+ Google PageSpeed score as standard. Your palette, your typography, your tone of voice. SEO foundations, analytics, lead capture, and a content system your team can update without calling us are all baked in. The result is a website that looks like the best version of your brand — and earns its keep as your hardest-working salesperson.",
+    features: [
+      { title: "Bespoke UI/UX Design", description: "Designed from scratch to your brand — no themes, no page builders. Every section earns its place on the page." },
+      { title: "Lightning-Fast Performance", description: "Hand-built for speed: sub-second loads and a 90+ Google PageSpeed score, on mobile and desktop." },
+      { title: "Mobile-First & Responsive", description: "Designed for the phone first, where most of your traffic is — then scaled up flawlessly to tablet and desktop." },
+      { title: "SEO Foundations Built In", description: "Clean semantic markup, fast Core Web Vitals, schema, sitemaps, and metadata — so you rank from day one." },
+      { title: "Easy-to-Edit Content System", description: "Update text, images, and pages yourself through a simple CMS. No developer, no monthly retainer required." },
+      { title: "Lead Capture & Integrations", description: "Forms wired straight to WhatsApp, email, and your CRM — every enquiry reaches you in seconds, not days." },
+      { title: "Online Store Ready", description: "Need to sell online? We build secure e-commerce with Razorpay, UPI, inventory, and order management." },
+      { title: "Analytics, Hosting & Care", description: "Google Analytics set up, fast managed hosting, SSL, and optional care plans for updates and backups." },
+    ],
+    process: [
+      { step: "01", title: "Discovery", description: "We map your goals, audience, and the actions that make you money. Sitemap and scope agreed before design starts." },
+      { step: "02", title: "Design", description: "Page-by-page design in Figma — every section, every state. You review and approve before a line of code is written." },
+      { step: "03", title: "Build", description: "Hand-built front-end, performance-tuned and tested across devices and browsers. Weekly previews, no surprises." },
+      { step: "04", title: "Launch & Grow", description: "We handle go-live, analytics, and search-engine submission — then stay on for updates and ongoing improvements." },
+    ],
+    industries: ["Salons & Spas", "Clinics & Healthcare", "Real Estate", "Restaurants & Cafes", "Gyms & Fitness", "Professional Services"],
+    faqs: [
+      {
+        q: "How long does it take to design and build a website?",
+        a: "A focused marketing website — five to eight pages, custom design, fully responsive — typically takes three to five weeks from kick-off to launch. Larger sites or online stores take six to ten weeks depending on scope. We agree a fixed timeline before we start, and you see weekly previews throughout.",
+      },
+      {
+        q: "What does a custom website cost in India?",
+        a: "A bespoke, conversion-focused marketing website usually falls in the ₹50,000 to ₹2 lakh range depending on the number of pages, custom design depth, and integrations. E-commerce stores start higher. We provide a fixed-price quote after a short discovery call — no hidden costs and no surprise add-ons.",
+      },
+      {
+        q: "Do you build online stores and e-commerce sites?",
+        a: "Yes. We build secure online stores with Razorpay and UPI payments, product and inventory management, order tracking, and a dashboard your team can run day to day — either as a custom build or on a proven platform, whichever fits your catalogue and budget.",
+      },
+      {
+        q: "Will I be able to update the website myself?",
+        a: "Absolutely. We build on a simple content system so your team can edit text, swap images, and add pages without writing code or paying us a monthly retainer. We hand over full ownership, logins, and a short training session at launch.",
+      },
+    ],
+    seoTitle: "Web Design & Development Company India — Fast, SEO-Ready Custom Websites",
+    seoDescription:
+      "Bespoke web design and development for ambitious brands across India. Fast, mobile-first, SEO-ready custom websites and online stores — 90+ PageSpeed, lead capture, and easy-to-edit CMS. Mohali studio.",
+    canonical: "/services/web-design-development",
+  },
 };

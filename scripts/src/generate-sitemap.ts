@@ -21,6 +21,7 @@ const routes: SitemapEntry[] = [
   { path: "/work/open-humana",                             changefreq: "monthly", priority: "0.7" },
 
   { path: "/services/mobile-app-development",              changefreq: "monthly", priority: "0.9" },
+  { path: "/services/web-design-development",              changefreq: "monthly", priority: "0.9" },
   { path: "/services/ai-voice-agents",                     changefreq: "monthly", priority: "0.9" },
   { path: "/services/automation-systems",                  changefreq: "monthly", priority: "0.9" },
 

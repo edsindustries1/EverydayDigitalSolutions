@@ -12,6 +12,7 @@ const GlassLens = lazy(() =>
 const NAV_TABS = [
   { label: "Craft",         href: "/craft" },
   { label: "Mobile Apps",   href: "/services/mobile-app-development" },
+  { label: "Web Design",    href: "/services/web-design-development" },
   { label: "AI Voice",      href: "/services/ai-voice-agents" },
   { label: "Automation",    href: "/services/automation-systems" },
   { label: "Salons & Spas", href: "/solutions/salons-and-spas" },

@@ -27,6 +27,7 @@ import GetAQuote from "@/pages/get-a-quote";
 import MobileAppDevelopment from "@/pages/services/mobile-app-development";
 import AIVoiceAgents from "@/pages/services/ai-voice-agents";
 import AutomationSystems from "@/pages/services/automation-systems";
+import WebDesignDevelopment from "@/pages/services/web-design-development";
 
 import Chandigarh from "@/pages/locations/chandigarh";
 import Mohali from "@/pages/locations/mohali";
@@ -83,6 +84,7 @@ function Router() {
       <Route path="/services/mobile-app-development" component={MobileAppDevelopment} />
       <Route path="/services/ai-voice-agents" component={AIVoiceAgents} />
       <Route path="/services/automation-systems" component={AutomationSystems} />
+      <Route path="/services/web-design-development" component={WebDesignDevelopment} />
 
       <Route path="/chandigarh" component={Chandigarh} />
       <Route path="/chandigarh/sector-17" component={ChandigarhSector17} />
