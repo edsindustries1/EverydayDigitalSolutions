@@ -1,38 +1,47 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "wouter";
 import { X } from "lucide-react";
 import { LeadMagnet } from "./LeadMagnet";
 
+// NOTE: This used to be an exit-intent modal (triggered on mouse-leave at the top
+// of the viewport). That fired almost immediately — including for Google's ad
+// review bot — which read as a disruptive interstitial and risked an Ads policy
+// violation. It now appears only after the visitor has stayed ~1 minute, once per
+// session, desktop only. Set REMOVE-friendly: delete <ExitIntent /> from App.tsx
+// to disable entirely.
+
 const SHOWN_KEY = "eds_exit_intent_shown";
+const DELAY_MS = 60_000; // show only after ~1 minute of dwell time
+const EXCLUDED_PATHS = ["/contact", "/admin", "/card"];
 
 export function ExitIntent() {
-  const [location] = useLocation();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.innerWidth < 1024) return; // desktop only
-    if (location.startsWith("/contact") || location.startsWith("/admin") || location.startsWith("/card")) return;
+    // Already shown in this session — never show again on reload/navigation.
     try {
       if (sessionStorage.getItem(SHOWN_KEY) === "1") return;
     } catch {
       return;
     }
 
-    function handler(e: MouseEvent) {
-      if (e.clientY > 0) return;
+    // ExitIntent is mounted once at the app root, so this timer measures total
+    // time on the site (it does not reset on client-side navigation).
+    const timer = window.setTimeout(() => {
+      if (window.innerWidth < 1024) return; // desktop only
+      const path = window.location.pathname;
+      if (EXCLUDED_PATHS.some((p) => path.startsWith(p))) return;
       try {
+        if (sessionStorage.getItem(SHOWN_KEY) === "1") return;
         sessionStorage.setItem(SHOWN_KEY, "1");
       } catch {
-        // ignore
+        return;
       }
       setOpen(true);
-      document.removeEventListener("mouseleave", handler);
-    }
+    }, DELAY_MS);
 
-    document.addEventListener("mouseleave", handler);
-    return () => document.removeEventListener("mouseleave", handler);
-  }, [location]);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   if (!open) return null;
 
@@ -47,7 +56,7 @@ export function ExitIntent() {
           <X className="w-5 h-5" />
         </button>
         <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-2">
-          Before you go
+          While you're here
         </p>
         <h3 className="font-serif text-2xl sm:text-3xl text-foreground leading-tight mb-3">
           Get the <em className="italic text-primary">App Cost Guide</em>.
@@ -55,7 +64,7 @@ export function ExitIntent() {
         <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
           Built from 7 years of working with service businesses in Punjab, plus our 2026 flagship build for Quasar Salon. 18 pages. Free.
         </p>
-        <LeadMagnet source="exit_intent" variant="compact" />
+        <LeadMagnet source="timed_modal" variant="compact" />
       </div>
     </div>
   );
