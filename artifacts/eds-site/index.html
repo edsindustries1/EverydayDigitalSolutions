@@ -5,9 +5,13 @@
     <!-- Theme: apply class before paint to prevent flash -->
     <script>
       (function () {
-        var t = localStorage.getItem('eds-theme');
-        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
+        // Light is the default theme. Dark only applies when the user has
+        // explicitly chosen it via the toggle (saved in localStorage).
+        // The OS setting (prefers-color-scheme) is intentionally ignored.
+        if (localStorage.getItem('eds-theme') === 'dark') {
+          var el = document.documentElement;
+          el.classList.add('dark');
+          el.style.colorScheme = 'dark';
         }
       })();
     </script>
@@ -15,8 +19,8 @@
     <!-- Default title & description; react-helmet-async overrides these per page -->
     <title>Everyday Digital Solutions — AI & Custom Software Studio · Mohali, India</title>
     <meta name="description" content="Senior-led custom software, AI voice agents, and automation systems for ambitious service businesses across Chandigarh, Mohali & Jalandhar. Shipped in 30 days." />
-    <meta name="theme-color" content="#0f0e08" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#FAFAF8" />
+    <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
