@@ -7,6 +7,12 @@ export const siteConfig = {
   email: "admin@everydaydigitalsolutions.com",
   whatsapp: "https://wa.me/919056066006",
   domain: "everydaydigitalsolutions.com",
+  // Legal-entity details — must match the GST certificate and Razorpay
+  // invoices exactly. Shown on every policy page and in the footer.
+  legalName: "Everyday Digital Solutions",
+  gstin: "03IOMPS6720H1ZL",
+  registeredAddress:
+    "Tecfin Tower, 264-265, Phase 8B, Sector 74, SAS Nagar (Mohali), Punjab 140307, India",
   offices: [
     {
       city: "Mohali",

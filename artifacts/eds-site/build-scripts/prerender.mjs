@@ -98,6 +98,9 @@ const ROUTES = [
   { urlPath: "privacy",                             url: "/privacy" },
   { urlPath: "terms",                               url: "/terms" },
   { urlPath: "cookies",                             url: "/cookies" },
+  { urlPath: "refund",                              url: "/refund" },
+  { urlPath: "shipping",                            url: "/shipping" },
+  { urlPath: "pricing",                             url: "/pricing" },
 ];
 
 // Strip fallback <title> and <meta name="description"> from the template;
@@ -112,6 +115,15 @@ for (const route of ROUTES) {
     appHtml = render(route.url);
   } catch (err) {
     console.error(`[prerender] Error rendering ${route.url}:`, err.message);
+    process.exit(1);
+  }
+
+  // Guard against silently-empty renders: a route listed here but missing
+  // from entry-server's route table renders "" and would ship a blank page.
+  if (!appHtml || !appHtml.trim()) {
+    console.error(
+      `[prerender] ${route.url} rendered EMPTY — is the route registered in entry-server.tsx?`
+    );
     process.exit(1);
   }
 

@@ -3,9 +3,10 @@ import { ArrowLeft } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { LegalIdentityLine, LegalContactBlock } from "@/components/LegalEntity";
 import { site } from "@/lib/constants";
 
-const LAST_UPDATED = "May 14, 2026";
+const LAST_UPDATED = "July 22, 2026";
 
 export default function Privacy() {
   return (
@@ -36,15 +37,18 @@ export default function Privacy() {
               Plain-English summary of what we collect, why, and how to ask us
               to delete it. Compliant with India's DPDP Act 2023.
             </p>
+            <LegalIdentityLine />
           </header>
 
           <h2>Who we are</h2>
           <p>
-            <strong>Everyday Digital Solutions</strong> (referred to as &ldquo;EDS&rdquo;,
-            &ldquo;we&rdquo;, or &ldquo;us&rdquo;) is a software studio based in Mohali, Punjab,
-            India. We operate the website{" "}
+            <strong>{site.legalName}</strong> (referred to as &ldquo;EDS&rdquo;,
+            &ldquo;we&rdquo;, or &ldquo;us&rdquo;), GSTIN {site.gstin}, is a software
+            studio with its registered office at {site.registeredAddress}. We
+            operate the website{" "}
             <a href="https://everydaydigitalsolutions.com">everydaydigitalsolutions.com</a>{" "}
-            and own the data described below.
+            and are the data fiduciary (under India&rsquo;s Digital Personal
+            Data Protection Act, 2023) for the data described below.
           </p>
           <p>
             For privacy questions or data requests, write to{" "}
@@ -122,7 +126,34 @@ export default function Privacy() {
           </ul>
           <p>
             We never sell your data, share it with advertising networks, or use
-            it for purposes other than running this business.
+            it for purposes other than running this business. Beyond the site
+            itself, we process client contact and billing details as needed to
+            provide contracted services, issue invoices, collect payments, and
+            comply with law (e.g. GST record-keeping).
+          </p>
+
+          <h2>Payments</h2>
+          <p>
+            Payments for our services are processed by{" "}
+            <strong>Razorpay</strong>, a PCI-DSS-compliant payment gateway.
+            Your card, UPI, and bank details are collected and handled by
+            Razorpay&rsquo;s systems —{" "}
+            <strong>EDS never sees or stores your full payment credentials.</strong>{" "}
+            We receive only the transaction status and the billing details
+            needed to issue invoices. Razorpay&rsquo;s privacy policy is at{" "}
+            <a href="https://razorpay.com/privacy/" target="_blank" rel="noopener noreferrer">
+              razorpay.com/privacy
+            </a>.
+          </p>
+
+          <h2>International transfers</h2>
+          <p>
+            We serve clients in India, the US, and Canada, and some of the
+            tools we use (hosting, communication, AI APIs) may store or
+            process data outside India. Where personal data is transferred
+            internationally, we share only what is necessary to deliver the
+            service, with providers that maintain appropriate safeguards, in
+            line with the DPDP Act.
           </p>
 
           <h2>How long we keep it</h2>
@@ -163,6 +194,9 @@ export default function Privacy() {
             are:
           </p>
           <ul>
+            <li><strong>Razorpay</strong> — our payment gateway, which
+              processes payment transactions when you pay an invoice. See the
+              &ldquo;Payments&rdquo; section above.</li>
             <li><strong>Railway</strong> — our hosting provider, which sees the
               raw HTTP request (IP, headers). Their privacy policy is at{" "}
               <a href="https://railway.com/legal/privacy" target="_blank" rel="noopener noreferrer">railway.com/legal/privacy</a>.</li>
@@ -196,17 +230,20 @@ export default function Privacy() {
             practical, show a notice on the site for 30 days.
           </p>
 
+          <LegalContactBlock />
+
           <p className="not-prose mt-12 pt-6 border-t border-border text-sm text-muted-foreground">
-            Questions? Email{" "}
-            <a className="text-primary hover:underline" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
-            . See also: <Link className="text-primary hover:underline" href="/cookies">
+            See also:{" "}
+            <Link className="text-primary hover:underline" href="/cookies">
               Cookies
             </Link>{" "}
             ·{" "}
             <Link className="text-primary hover:underline" href="/terms">
-              Terms of Service
+              Terms &amp; Conditions
+            </Link>{" "}
+            ·{" "}
+            <Link className="text-primary hover:underline" href="/refund">
+              Cancellation &amp; Refunds
             </Link>
             .
           </p>

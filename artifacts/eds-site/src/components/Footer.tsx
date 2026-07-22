@@ -127,24 +127,38 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Everyday Digital Solutions. All rights reserved.
-          </p>
-          <nav aria-label="Legal" className="flex flex-wrap items-center gap-4 text-xs">
+        <div className="flex flex-col gap-4">
+          <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
             <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
-              Privacy
+              Privacy Policy
             </Link>
             <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-              Terms
+              Terms &amp; Conditions
+            </Link>
+            <Link href="/refund" className="text-muted-foreground hover:text-foreground transition-colors">
+              Cancellation &amp; Refunds
+            </Link>
+            <Link href="/shipping" className="text-muted-foreground hover:text-foreground transition-colors">
+              Shipping &amp; Service Delivery
+            </Link>
+            <Link href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+              Pricing
             </Link>
             <Link href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
               Cookies
             </Link>
+            <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+              Contact Us
+            </Link>
           </nav>
-          <p className="text-xs text-muted-foreground">
-            AI &amp; Custom Software Studio · Mohali, Punjab, India
-          </p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} {site.legalName}. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {site.legalName} · GSTIN: {site.gstin} · Mohali, Punjab, India
+            </p>
+          </div>
         </div>
       </div>
     </footer>

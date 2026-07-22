@@ -16,6 +16,9 @@ import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Cookies from "@/pages/cookies";
+import Refund from "@/pages/refund";
+import Shipping from "@/pages/shipping";
+import Pricing from "@/pages/pricing";
 import QuasarCaseStudy from "@/pages/quasar-case-study";
 import OpenHumanaCaseStudy from "@/pages/work/open-humana";
 import Craft from "@/pages/craft";
@@ -74,6 +77,9 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/cookies" component={Cookies} />
+      <Route path="/refund" component={Refund} />
+      <Route path="/shipping" component={Shipping} />
+      <Route path="/pricing" component={Pricing} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/request-review" component={RequestReview} />
       <Route path="/resources/app-cost-guide-2026" component={AppCostGuide2026} />

@@ -6,6 +6,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Contact from "@/pages/contact";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
+import Cookies from "@/pages/cookies";
+import Refund from "@/pages/refund";
+import Shipping from "@/pages/shipping";
+import Pricing from "@/pages/pricing";
 import QuasarCaseStudy from "@/pages/quasar-case-study";
 import OpenHumanaCaseStudy from "@/pages/work/open-humana";
 import Craft from "@/pages/craft";
@@ -17,6 +23,7 @@ import AppCostGuide2026 from "@/pages/resources/app-cost-guide-2026";
 import MobileAppDevelopment from "@/pages/services/mobile-app-development";
 import AIVoiceAgents from "@/pages/services/ai-voice-agents";
 import AutomationSystems from "@/pages/services/automation-systems";
+import WebDesignDevelopment from "@/pages/services/web-design-development";
 
 import Chandigarh from "@/pages/locations/chandigarh";
 import Mohali from "@/pages/locations/mohali";
@@ -66,6 +73,12 @@ export function render(url: string): string {
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/contact" component={Contact} />
+              <Route path="/privacy" component={Privacy} />
+              <Route path="/terms" component={Terms} />
+              <Route path="/cookies" component={Cookies} />
+              <Route path="/refund" component={Refund} />
+              <Route path="/shipping" component={Shipping} />
+              <Route path="/pricing" component={Pricing} />
               <Route path="/admin" component={Admin} />
               <Route path="/admin/request-review" component={RequestReview} />
               <Route path="/resources/app-cost-guide-2026" component={AppCostGuide2026} />
@@ -77,6 +90,7 @@ export function render(url: string): string {
               <Route path="/services/mobile-app-development" component={MobileAppDevelopment} />
               <Route path="/services/ai-voice-agents" component={AIVoiceAgents} />
               <Route path="/services/automation-systems" component={AutomationSystems} />
+              <Route path="/services/web-design-development" component={WebDesignDevelopment} />
 
               <Route path="/chandigarh" component={Chandigarh} />
               <Route path="/chandigarh/sector-17" component={ChandigarhSector17} />

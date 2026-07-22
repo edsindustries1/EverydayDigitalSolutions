@@ -68,6 +68,9 @@ const routes: SitemapEntry[] = [
   { path: "/privacy",                                       changefreq: "yearly",  priority: "0.3" },
   { path: "/terms",                                         changefreq: "yearly",  priority: "0.3" },
   { path: "/cookies",                                       changefreq: "yearly",  priority: "0.3" },
+  { path: "/refund",                                        changefreq: "yearly",  priority: "0.3" },
+  { path: "/shipping",                                      changefreq: "yearly",  priority: "0.3" },
+  { path: "/pricing",                                       changefreq: "monthly", priority: "0.6" },
 ];
 
 function buildSitemap(entries: SitemapEntry[]): string {
