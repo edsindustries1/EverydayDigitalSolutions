@@ -2,6 +2,7 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./styles/eds-theme.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));

@@ -1,0 +1,520 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   EDS THEME — from the Claude Design export (THEME.md)
+   ───────────────────────────────────────────────────────────────────────────
+   Values are lifted verbatim from the spec, then mapped onto the token names
+   the existing components already consume (--bg-*, --text-*, --accent) so the
+   whole site re-skins without touching forty component files.
+
+   Scoped under [data-skin="eds"] so the live site is untouched until this is
+   signed off. Promoting it = move the token block into :root in index.css and
+   delete the scope selector.
+
+   Note the specificity: :root[data-skin] not [data-skin]. A bare attribute
+   selector ties with :root on specificity and loses on source order, which
+   silently drops every token that :root also defines.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root[data-skin="eds"] {
+  color-scheme: light;
+
+  /* ── Colour ── */
+  --bg-base:        #FCF9F6;   /* page */
+  --bg-alt:         #F4F2ED;   /* process section, chips, image wells */
+  --bg-elevated:    #FFFFFF;
+  --bg-card:        #FFFFFF;
+  --bg-sunken:      #F4F2ED;
+
+  --text-primary:   #1F1D1A;
+  --text-secondary: #4A463F;   /* feature rows */
+  --text-muted:     #6B6660;   /* paragraphs, labels */
+
+  --accent:         #F97C1F;
+  --accent-deep:    #FF8C33;   /* hover */
+  --accent-soft:    rgba(249, 124, 31, 0.10);
+  --accent-ring:    #F9AE6B;   /* stat circles */
+  --glow-core:      #FF9B3D;
+  --glow-bloom:     #FFC66B;
+
+  --hairline:       rgba(31, 29, 26, 0.06);
+  --border-subtle:  rgba(31, 29, 26, 0.06);
+  --border-default: rgba(31, 29, 26, 0.10);
+
+  /* ── Shadow ── */
+  --sh-btn:   0 10px 28px rgba(249, 124, 31, 0.32);
+  --sh-btn-h: 0 14px 34px rgba(255, 198, 107, 0.85);
+  --sh-card:  0 26px 60px rgba(60, 50, 35, 0.13);
+  --sh-soft:  0 14px 34px rgba(60, 50, 35, 0.16);
+
+  /* ── Type — Inter only. The spec drops the serif entirely. ── */
+  --font-sans:  Inter, system-ui, -apple-system, sans-serif;
+  --font-serif: Inter, system-ui, -apple-system, sans-serif;
+
+  /* ── Layout ── */
+  --w-content: 1160px;
+  --w-hero:    1360px;
+  --gutter:    24px;
+  --r-card:    18px;
+  --r-btn:     14px;
+}
+
+/* The design has no dark mode. Rather than invent one, dark is neutralised so
+   a stale .dark class on <html> cannot half-apply the old palette. */
+:root[data-skin="eds"].dark { color-scheme: light; }
+
+[data-skin="eds"] body {
+  background: var(--bg-base) !important;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The ambient orb canvas is from the previous design language and fights a
+   flat warm ground. Its canvas carries aria-hidden directly. */
+[data-skin="eds"] canvas[aria-hidden="true"] { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPE SCALE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-skin="eds"] h1,
+[data-skin="eds"] h2,
+[data-skin="eds"] h3,
+[data-skin="eds"] h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* Heading SIZES are deliberately not set globally. These rules are unlayered,
+   so a font-size here would beat every `text-2xl`-style utility across the
+   site and flatten forty pages of considered hierarchy into one scale. Sizes
+   stay with the components; the scale below applies only where headings are
+   written bare, which is the new homepage. */
+.eds-home h1 { font-size: clamp(2.35rem, 4.4vw, 3.875rem); line-height: 1.08; }
+.eds-home h2 { font-size: clamp(1.9rem, 3.4vw, 3rem);      line-height: 1.12; }
+.eds-home h3 { font-size: 1.375rem; letter-spacing: -0.01em; }
+
+.eds-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+.eds-lede {
+  font-size: clamp(1rem, 1.3vw, 1.1875rem);
+  line-height: 1.55;
+  color: var(--text-muted);
+  text-wrap: pretty;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPONENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Buttons. Primary carries an arrow in a translucent circle; both lift 2px. */
+.eds-btn,
+.eds-btn-2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 600;
+  font-size: 16.5px;
+  border-radius: var(--r-btn);
+  transition: background .25s, box-shadow .25s, transform .25s, color .25s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.eds-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 15px 16px 15px 28px;
+  box-shadow: var(--sh-btn);
+}
+.eds-btn:hover { background: var(--accent-deep); color: #fff; transform: translateY(-2px); box-shadow: var(--sh-btn-h); }
+.eds-btn-2 {
+  background: #fff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  padding: 15px 28px;
+}
+.eds-btn-2:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(60,50,35,.10); color: var(--text-primary); }
+
+.eds-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.28);
+  font-size: 15px;
+  flex: none;
+}
+
+/* ── Cards. Image sits edge-to-edge on the top lip; hover lifts and warms the
+   border. Large cards additionally tilt toward the cursor (JS). */
+.eds-card {
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.eds-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh-card);
+  border-color: rgba(249,124,31,.30);
+}
+.eds-card img { display: block; width: 100%; }
+
+/* ── Stat row ── */
+.eds-stat-ring {
+  flex: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-ring);
+  display: flex; align-items: center; justify-content: center;
+}
+.eds-stat-ring i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: block; }
+
+/* ── Section reveal. Every section starts displaced and settles once seen. ── */
+.eds-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .85s ease, transform .85s cubic-bezier(.16,.7,.3,1);
+}
+.eds-reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* The spec puts all motion behind one flag; off means final state, not
+     absent — so reveals resolve immediately rather than never firing. */
+  .eds-reveal { opacity: 1; transform: none; transition: none; }
+  .eds-btn:hover, .eds-btn-2:hover, .eds-card:hover { transform: none; }
+}
+
+/* ── Horizontal card rail ── */
+.eds-rail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px 22px;
+  scrollbar-width: none;
+}
+.eds-rail::-webkit-scrollbar { display: none; }
+.eds-rail > * { flex: none; scroll-snap-align: start; }
+
+.eds-rail-btn {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(31,29,26,.09);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: border-color .25s, color .25s;
+}
+.eds-rail-btn:hover { border-color: rgba(249,124,31,.5); color: var(--accent); }
+.eds-rail-btn:disabled { opacity: .35; cursor: default; }
+.eds-rail-btn:disabled:hover { border-color: rgba(31,29,26,.09); color: var(--text-muted); }
+
+/* ── FAQ ── */
+.eds-faq-row {
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.eds-faq-plus {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  color: var(--text-primary);
+}
+.eds-faq-row[data-open="true"] .eds-faq-plus { transform: rotate(45deg); }
+
+/* ── Nav ── */
+.eds-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--hairline);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.eds-nav a { color: var(--text-primary); text-decoration: none; transition: color .3s; }
+.eds-nav a:hover { color: var(--accent); }
+.eds-nav-link { position: relative; font-size: 15px; font-weight: 500; }
+.eds-nav-link span {
+  position: absolute; left: 0; right: 0; bottom: -10px;
+  height: 2px; border-radius: 2px; background: var(--accent);
+  opacity: 0; transition: opacity .3s;
+}
+.eds-nav-link[data-active="true"] { color: var(--accent); }
+.eds-nav-link[data-active="true"] span { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIQUID GLASS — the floating hero panel
+   ───────────────────────────────────────────────────────────────────────────
+   A real refracting surface rather than a flat translucent box. Four layers do
+   the work: a backdrop blur that also lifts saturation and brightness (glass
+   concentrates light, it does not just dim it), a translucent fill, a bright
+   1px edge, and an inset top highlight reading as the lit lip of the pane.
+
+   --g-fill / --g-blur / --g-edge are driven from scroll by EdsFullHero, so the
+   pane clarifies as it leaves. Defaults here are the at-rest, most-readable
+   state — if the JS never runs, the text is still legible.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.eds-glass {
+  position: relative;
+  border-radius: 32px;
+  padding: clamp(26px, 3vw, 44px) clamp(24px, 3vw, 46px);
+  background: rgba(255, 255, 255, var(--g-fill, 0.40));
+  backdrop-filter: blur(var(--g-blur, 20px)) saturate(170%) brightness(1.06);
+  -webkit-backdrop-filter: blur(var(--g-blur, 20px)) saturate(170%) brightness(1.06);
+  border: 1px solid rgba(255, 255, 255, var(--g-edge, 0.62));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.20),
+    0 30px 70px -22px rgba(74, 52, 30, 0.30),
+    0 10px 28px -14px rgba(74, 52, 30, 0.22);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Specular sweep across the top lip — the cue that sells it as a solid pane of
+   glass rather than a blurred rectangle. */
+.eds-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.10) 26%,
+    rgba(255, 255, 255, 0) 46%
+  );
+  opacity: var(--g-spec, 1);
+  transition: opacity .4s ease;
+}
+
+/* Backdrop-filter is the whole effect; without it a 40%-white box over a busy
+   render is unreadable. Fall back to a near-opaque plate. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .eds-glass { background: rgba(255, 255, 255, 0.88); }
+}
+
+.eds-glass > * { position: relative; z-index: 1; }
+
+/* ── Glass on the text itself, not a panel behind it ───────────────────────
+   The element stays `display: inline`, so the glass wraps each line of text at
+   its own width instead of squaring off into a block. `box-decoration-break:
+   clone` is what makes that work — without it a multi-line span gets ONE
+   continuous background with the padding and radius applied only at the very
+   start and end, which looks like a torn ribbon rather than stacked panes.
+
+   Every line therefore gets its own rounded, blurred, self-contained pane that
+   ends where the words end. */
+.eds-glass-text {
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.10em 0.26em;
+  border-radius: 0.24em;
+  background: rgba(255, 255, 255, var(--gt-fill, 0.40));
+  backdrop-filter: blur(var(--gt-blur, 16px)) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(var(--gt-blur, 16px)) saturate(180%) brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    0 8px 22px -12px rgba(60, 45, 30, 0.34);
+  /* Keeps successive lines from clamping together into a solid slab. */
+  -webkit-box-decoration-break: clone;
+}
+
+/* Tighter, quieter pane for supporting copy — same material, less presence. */
+.eds-glass-text--soft {
+  padding: 0.14em 0.34em;
+  border-radius: 0.4em;
+  background: rgba(255, 255, 255, calc(var(--gt-fill, 0.40) * 0.82));
+}
+
+/* Without backdrop-filter the pane is just a 40%-white wash over a busy render,
+   which is unreadable. Fall back to a near-opaque line. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .eds-glass-text { background: rgba(255, 255, 255, 0.86); }
+}
+
+/* Line-height has to open up or the stacked panes overlap each other. */
+.eds-glass-lines { line-height: 1.34; }
+.eds-glass-lines h1 { line-height: 1.24; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SITE-WIDE RE-SKIN
+   ───────────────────────────────────────────────────────────────────────────
+   The other ~40 pages are built on four class families — .glass (168 uses),
+   .btn-glass-primary (26), .btn-glass-neutral (20), .glass-elevated (18) —
+   plus the .kn-* navbar. Redefining those here re-skins every page without
+   touching a single component, so no content or markup changes.
+
+   These rules are deliberately unlayered. Tailwind's utilities sit in a
+   cascade layer, and unlayered rules beat any layer regardless of specificity
+   — which is what lets a plain `.glass` override win over utility classes on
+   the same element.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Type. `@theme inline` compiles font utilities to literal families, not
+   var() references, so overriding --font-serif alone does nothing to anything
+   using `className="font-serif"`. The utilities have to be overridden too. */
+[data-skin="eds"] .font-serif,
+[data-skin="eds"] .font-sans,
+[data-skin="eds"] h1, [data-skin="eds"] h2,
+[data-skin="eds"] h3, [data-skin="eds"] h4,
+[data-skin="eds"] h5, [data-skin="eds"] h6 {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+[data-skin="eds"] h1, [data-skin="eds"] h2,
+[data-skin="eds"] h3, [data-skin="eds"] h4 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+[data-skin="eds"] h5, [data-skin="eds"] h6 { font-weight: 600; letter-spacing: -0.01em; }
+/* The old design set headings in an italic serif; italics on Inter read as an
+   error rather than emphasis, so accented phrases take the accent colour. */
+[data-skin="eds"] h1 em, [data-skin="eds"] h2 em,
+[data-skin="eds"] h3 em, [data-skin="eds"] .font-serif em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* ── Surfaces ── */
+[data-skin="eds"] .glass,
+[data-skin="eds"] .glass-elevated {
+  background: var(--bg-card);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  box-shadow: 0 1px 2px rgba(60, 45, 30, 0.04), 0 10px 26px -14px rgba(60, 45, 30, 0.14);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+[data-skin="eds"] .glass-elevated {
+  box-shadow: 0 2px 6px rgba(60, 45, 30, 0.05), 0 22px 54px -20px rgba(60, 45, 30, 0.20);
+}
+
+@media (hover: hover) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-skin="eds"] .glass:hover,
+    [data-skin="eds"] .glass-elevated:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sh-card);
+      border-color: rgba(249, 124, 31, 0.30);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+}
+
+/* The glass-float hook paints a cursor-tracked specular sheen and its own
+   shadow. Both belong to the old lensing language and read as smudges on a
+   matte card, so they are switched off rather than restyled. */
+[data-skin="eds"] .glass-float-active,
+[data-skin="eds"] .glass.glass-float-active,
+[data-skin="eds"] .glass-elevated.glass-float-active {
+  box-shadow: var(--sh-card);
+}
+[data-skin="eds"] .glass.glass-float-active::before,
+[data-skin="eds"] .glass-elevated.glass-float-active::before,
+[data-skin="eds"] .btn-glass-primary.glass-float-active::before,
+[data-skin="eds"] .btn-glass-neutral.glass-float-active::before,
+[data-skin="eds"] [data-float].glass-float-active::after {
+  display: none !important;
+}
+
+/* ── Buttons ── */
+[data-skin="eds"] .btn-glass-primary {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--sh-btn);
+}
+[data-skin="eds"] .btn-glass-primary:hover {
+  background: var(--accent-deep);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--sh-btn-h);
+}
+[data-skin="eds"] .btn-glass-neutral {
+  background: #fff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 999px;
+  font-weight: 600;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--lift-1, 0 1px 2px rgba(60,45,30,.05));
+}
+[data-skin="eds"] .btn-glass-neutral:hover { box-shadow: 0 10px 24px -10px rgba(60,45,30,.18); }
+
+/* ── Navbar. The site-wide bar keeps its own markup; only the material and
+   the accent change, so it reads as the same family as the homepage nav. ── */
+[data-skin="eds"] .kn-header--scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 1px 2px rgba(60, 45, 30, 0.04), 0 10px 30px -16px rgba(60, 45, 30, 0.18);
+}
+[data-skin="eds"] .kn-header--scrolled::before { display: none; }
+[data-skin="eds"] .kn-header--scrolled::after { background: var(--hairline); }
+[data-skin="eds"] .kn-logo-mark {
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(60, 45, 30, 0.05);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+[data-skin="eds"] .kn-logo-mark::before { display: none; }
+[data-skin="eds"] .kn-logo-name { font-family: Inter, system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+[data-skin="eds"] .kn-logo-sub { color: var(--accent); }
+[data-skin="eds"] .kn-cta-btn {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+  border-radius: 999px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 6px 18px -6px var(--accent-glow, rgba(249,124,31,.5));
+}
+[data-skin="eds"] .kn-cta-btn:hover { background: var(--accent-deep); border-color: transparent; }
+/* The design has no dark mode, so the toggle would be a control that does
+   nothing. Hidden rather than left to mislead. */
+[data-skin="eds"] .kn-theme-btn { display: none; }
+
+/* ── Misc ── */
+[data-skin="eds"] a { color: var(--text-primary); text-decoration: none; }
+[data-skin="eds"] a:hover { color: var(--accent); }
+.eds-well { background: var(--bg-alt); border-radius: 24px; overflow: hidden; }
+@keyframes eds-pulse { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+.eds-live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--glow-bloom);
+  animation: eds-pulse 2.4s ease-in-out infinite;
+  flex: none;
+}
+@media (prefers-reduced-motion: reduce) { .eds-live-dot { animation: none } }

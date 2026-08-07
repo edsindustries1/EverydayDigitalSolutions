@@ -121,6 +121,7 @@ function Router() {
 
       <Route path="/card/:slug" component={CardPage} />
 
+
       <Route component={NotFound} />
     </Switch>
   );
