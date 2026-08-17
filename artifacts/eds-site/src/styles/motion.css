@@ -1,0 +1,47 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLL MOTION — primitives for useScrollMotion.ts
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* One visual line of a heading, as a clipping mask.
+   The padding/margin pair is not cosmetic: `overflow: hidden` on a line box
+   slices the descenders off g, y, p and j. The padding gives the mask somewhere
+   to put them and the negative margin takes the space back out of the layout,
+   so line spacing is unchanged. */
+.mo-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.mo-line-i {
+  display: block;
+  will-change: transform;
+}
+
+/* The wipe target. Declared up front so the clip is composited from the first
+   frame rather than being promoted mid-animation. */
+.eds-well {
+  will-change: clip-path;
+}
+
+.eds-well img {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mo-line,
+  .mo-line-i,
+  .eds-well,
+  .eds-well img {
+    will-change: auto;
+  }
+}
+
+/* While the rail is dealing its cards in from the right, their x-offset is
+   real overflow inside a horizontally scrollable container — without this the
+   rail gains a scrollbar and can be scrolled into empty space mid-animation.
+   `clip` rather than `hidden` so it never becomes a scroll container itself. */
+.eds-rail[data-dealing] {
+  overflow-x: clip;
+}

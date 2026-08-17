@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PEARL BUTTON — styles for src/components/ui/pearl-button.tsx
+   ───────────────────────────────────────────────────────────────────────────
+   The shine is three things layered in a fixed order, and the order is the
+   whole trick:
+
+   1. inset shadows on the capsule — a bright top rim, a dark under-lip and a
+      bright bottom bounce, which is what reads as a rounded solid rather than
+      a flat pill;
+   2. `.wrap::before` — an oversized ellipse of 12% white, the diffuse bloom;
+   3. `.wrap::after` — a hard-edged top gloss with its own inset highlight.
+
+   Sizes are custom properties rather than separate rules so the shadow stack
+   is written once. `lg` is the original proportion; `md` matches the site's
+   existing `.eds-btn` so the two can be swapped one for one.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pearl-button {
+  --white: #ffe7ff;
+  --bg: #080808;
+  --radius: 100px;
+
+  --pearl-font: 25px;
+  --pearl-pad-y: 32px;
+  --pearl-pad-x: 45px;
+  /* Scales the drop shadow with the button. At `lg` this is the snippet's
+     3rem/1rem pair; smaller sizes would look like they were hovering a foot
+     off the page if it stayed fixed. */
+  --pearl-drop: 1;
+
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  position: relative;
+  border-radius: var(--radius);
+  background-color: var(--bg);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow:
+    inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.5),
+    0 calc(3rem * var(--pearl-drop)) calc(3rem * var(--pearl-drop)) rgba(0, 0, 0, 0.3),
+    0 calc(1rem * var(--pearl-drop)) calc(1rem * var(--pearl-drop)) calc(-0.6rem * var(--pearl-drop))
+      rgba(0, 0, 0, 0.8);
+}
+
+.pearl-button--md {
+  --pearl-font: 16.5px;
+  --pearl-pad-y: 15px;
+  --pearl-pad-x: 28px;
+  --pearl-drop: 0.42;
+}
+
+.pearl-button--sm {
+  --pearl-font: 14px;
+  --pearl-pad-y: 11px;
+  --pearl-pad-x: 20px;
+  --pearl-drop: 0.3;
+}
+
+.pearl-button .wrap {
+  font-size: var(--pearl-font);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  padding: var(--pearl-pad-y) var(--pearl-pad-x);
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.pearl-button .wrap p span:nth-child(2) {
+  display: none;
+}
+
+.pearl-button:hover .wrap p span:nth-child(1) {
+  display: none;
+}
+
+.pearl-button:hover .wrap p span:nth-child(2) {
+  display: inline-block;
+}
+
+.pearl-button .wrap p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  transform: translateY(2%);
+  /* Fades the very bottom of the glyphs, so the label reads as lit from above
+     and sinking into the capsule rather than sitting flat on it. */
+  -webkit-mask-image: linear-gradient(to bottom, white 40%, transparent);
+  mask-image: linear-gradient(to bottom, white 40%, transparent);
+}
+
+.pearl-button .wrap::before,
+.pearl-button .wrap::after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+/* The diffuse bloom. Deliberately larger than the button on every side. */
+.pearl-button .wrap::before {
+  left: -15%;
+  right: -15%;
+  bottom: 25%;
+  top: -100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* The hard top gloss. */
+.pearl-button .wrap::after {
+  left: 6%;
+  right: 6%;
+  top: 12%;
+  bottom: 40%;
+  border-radius: 22px 22px 0 0;
+  box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.8);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.pearl-button:hover {
+  box-shadow:
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.7),
+    0 calc(3rem * var(--pearl-drop)) calc(3rem * var(--pearl-drop)) rgba(0, 0, 0, 0.3),
+    0 calc(1rem * var(--pearl-drop)) calc(1rem * var(--pearl-drop)) calc(-0.6rem * var(--pearl-drop))
+      rgba(0, 0, 0, 0.8);
+}
+
+/* Hover parallaxes the three layers against each other by a few percent —
+   that tiny disagreement is what sells it as a physical object. */
+.pearl-button:hover .wrap::before {
+  transform: translateY(-5%);
+}
+
+.pearl-button:hover .wrap::after {
+  opacity: 0.4;
+  transform: translateY(5%);
+}
+
+.pearl-button:hover .wrap p {
+  transform: translateY(-4%);
+}
+
+.pearl-button:active {
+  transform: translateY(4px);
+  box-shadow:
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
+    0 calc(3rem * var(--pearl-drop)) calc(3rem * var(--pearl-drop)) rgba(0, 0, 0, 0.3),
+    0 calc(1rem * var(--pearl-drop)) calc(1rem * var(--pearl-drop)) calc(-0.6rem * var(--pearl-drop))
+      rgba(0, 0, 0, 0.8);
+}
+
+.pearl-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pearl-button,
+  .pearl-button .wrap p,
+  .pearl-button .wrap::before,
+  .pearl-button .wrap::after {
+    transition: none;
+  }
+}

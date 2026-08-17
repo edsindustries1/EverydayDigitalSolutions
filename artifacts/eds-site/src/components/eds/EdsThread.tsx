@@ -48,7 +48,17 @@ export function EdsThread() {
         path += ` C${a.x.toFixed(1)} ${(a.y + cp).toFixed(1)}, ${b.x.toFixed(1)} ${(b.y - cp).toFixed(1)}, ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
       }
       setD(path);
-      setH(document.documentElement.scrollHeight);
+      // NOT scrollHeight. This element is absolutely positioned, so it adds
+      // nothing to its parent's layout height — but its box still extends the
+      // document's scrollable area. Sizing it from scrollHeight therefore
+      // ratchets: every measurement includes the height set by the previous
+      // one and can only grow. The sections above use `content-visibility`,
+      // so the very first measurement lands while they are still 900px
+      // placeholders, and that inflated figure sticks — holding roughly
+      // 1,300px of blank scroll open past the footer forever.
+      // The body's border-box height is the in-flow content height, which is
+      // what the thread should span.
+      setH(Math.round(document.body.getBoundingClientRect().height));
     };
 
     build();

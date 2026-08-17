@@ -32,7 +32,7 @@ export function WhatsAppFAB() {
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
       data-float=""
-      className="fixed bottom-5 right-5 z-30 flex md:hidden items-center justify-center w-13 h-13 rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#1ebe5d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="eds-wa-fab fixed bottom-5 right-5 z-30 flex md:hidden items-center justify-center rounded-full transition-colors focus-visible:outline-none"
       style={{ width: "52px", height: "52px" }}
     >
       <MessageCircle className="w-6 h-6" />

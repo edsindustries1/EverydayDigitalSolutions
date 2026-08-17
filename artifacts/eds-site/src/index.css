@@ -3,6 +3,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./styles/eds-theme.css";
+/* Warm-paper ground, ink type, pearl buttons. Overrides eds-theme tokens at
+   equal specificity, so it must stay AFTER it. Remove this one line to put
+   the orange theme back exactly as it was. */
+@import "./styles/paper-theme.css";
+@import "./styles/pearl.css";
+@import "./styles/kinetic.css";
+@import "./styles/motion.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
@@ -553,19 +560,20 @@
   }
 }
 
-/* ─── Below-fold render skipping ─────────────────────────────────────────────
-   `content-visibility: auto` lets the browser skip layout, paint, and style
-   for these sections while they're off-screen. `contain-intrinsic-size` gives
-   it a reserved height so the scrollbar doesn't jump as sections come into
-   view. Hero is intentionally NOT in this list — it's always in view on load.
-   The on-scroll framer-motion entrance animations still trigger correctly:
-   IntersectionObserver fires against the reserved box, not the skipped paint.
+/* ─── Below-fold render skipping — removed, deliberately ─────────────────────
+   These sections used `content-visibility: auto` with a 900px reserved size.
+   They actually render at 568–727px, so each one collapsed by 170–290px the
+   moment it first painted and the document shrank from 8057px to 6907px
+   MID-SCROLL — 2076px of cumulative movement under the reader. CLS reported
+   0.000 throughout, because every shift happened below the fold.
+
+   Measured A/B at 1440x900, scrolling the full page: with it on, 6 height
+   changes and 1122px of movement, 629ms of main-thread time. With it off,
+   2 changes and 462px, 621ms. It was costing stability and buying nothing —
+   this page is ~7000px with five modest sections, far too little work for
+   render-skipping to pay for itself.
+
+   If it ever comes back, it needs `contain-intrinsic-size: auto <size>` so
+   the browser reuses each section's real measured height, and a fallback
+   value near the true one.
 */
-#services,
-#work,
-#process,
-#about,
-#faq {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 900px;
-}

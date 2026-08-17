@@ -44,6 +44,7 @@
   --sh-btn-h: 0 14px 34px rgba(255, 198, 107, 0.85);
   --sh-card:  0 26px 60px rgba(60, 50, 35, 0.13);
   --sh-soft:  0 14px 34px rgba(60, 50, 35, 0.16);
+  --sh-chip:  0 6px 14px rgba(249, 124, 31, 0.35);   /* small accent discs */
 
   /* ── Type — Inter only. The spec drops the serif entirely. ── */
   --font-sans:  Inter, system-ui, -apple-system, sans-serif;
@@ -504,6 +505,48 @@
 /* The design has no dark mode, so the toggle would be a control that does
    nothing. Hidden rather than left to mislead. */
 [data-skin="eds"] .kn-theme-btn { display: none; }
+
+/* ── Floating nav bar ── */
+.eds-nav-bar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 12px 12px clamp(16px, 1.6vw, 26px);
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 26px;
+  box-shadow: 0 2px 6px rgba(60, 45, 30, 0.05), 0 14px 40px -14px rgba(60, 45, 30, 0.16);
+}
+
+/* Nav CTA + logo. Sized here rather than inline so the narrow-viewport rules
+   below can actually reach them. */
+.eds-nav-cta {
+  font-size: 16px;
+  padding: 13px 13px 13px 24px;
+  border-radius: 999px;
+  flex: none;
+}
+.eds-nav-cta .eds-arrow { width: 30px; height: 30px; font-size: 15px; }
+.eds-nav-logo { display: block; height: 42px; width: auto; }
+
+/* The nav is `position: fixed`, so the page wrapper's `overflow-x: clip`
+   cannot contain it — a fixed element's containing block is the viewport, not
+   an ancestor without a transform. At 320px the logo, the gap and this button
+   summed to 332px and dragged the whole document sideways. */
+@media (max-width: 380px) {
+  .eds-nav-bar {
+    gap: 10px;
+    padding: 10px 10px 10px 14px;
+  }
+  .eds-nav-logo { height: 34px; }
+  .eds-nav-cta {
+    font-size: 14.5px;
+    padding: 10px 10px 10px 16px;
+  }
+  .eds-nav-cta .eds-arrow { width: 26px; height: 26px; font-size: 14px; }
+}
 
 /* ── Misc ── */
 [data-skin="eds"] a { color: var(--text-primary); text-decoration: none; }

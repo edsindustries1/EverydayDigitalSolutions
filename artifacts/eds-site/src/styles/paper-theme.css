@@ -1,0 +1,513 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PAPER THEME — warm ivory ground, ink type, pearl buttons
+   ───────────────────────────────────────────────────────────────────────────
+   Applies site-wide. It overrides the tokens in eds-theme.css rather than
+   editing them, at equal specificity — so it wins on source order alone, and
+   deleting the one @import line in index.css restores the orange theme
+   exactly. Keep this file imported AFTER eds-theme.css.
+
+   The ground is not white. The reference is a warm ivory plaster, so the
+   neutrals are warm too: cold zinc greys on an ivory field read as dirt
+   rather than as a considered palette. Every grey below is mixed toward the
+   same hue as the paper.
+
+   --accent is the one that does the heavy lifting. Repointing it from orange
+   to ink drains the colour out of eyebrows, links, list bullets, stat rings,
+   the FAQ pluses and the scroll thread in a single line, because the whole
+   design already reads its colour from that token.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root[data-skin="eds"] {
+  color-scheme: light;
+
+  /* ── Ground ──
+     Cards sit LIGHTER than the page, not white-on-white: on an ivory field a
+     card needs to lift, and #FFF is the only value that reads as a hole. */
+  --bg-base: #faf5ec; /* the paper */
+  --bg-alt: #f2ebdd; /* recessed bands — process, chips, image wells */
+  --bg-elevated: #fdfaf4;
+  --bg-card: #fdfaf4;
+  --bg-sunken: #f2ebdd;
+
+  /* ── Ink. Warm-black, never #000 — pure black on warm paper looks punched
+     out of it rather than printed on it. ── */
+  --text-primary: #17140f;
+  --text-secondary: #453f34;
+  --text-muted: #7a7264;
+
+  /* One restrained accent, deepened from the brand's #F97C1F. The buttons are
+     pearl black further down the cascade, so this reaches only the places that
+     do structural work: eyebrows, active nav, list bullets, stat rings, the FAQ
+     pluses, link hover and the scroll thread. */
+  --accent: #c4611a;
+  --accent-deep: #a44f13;
+  --accent-soft: rgba(196, 97, 26, 0.09);
+  --accent-ring: #d9a071;
+  --glow-core: #c4611a;
+  --glow-bloom: #e6b489;
+
+  /* The ink band, and the values that live on it. */
+  --ink: #14120f;
+  --ink-raised: #1e1b16;
+  --ink-hairline: rgba(255, 255, 255, 0.1);
+  --ink-text: #f6f1e6;
+  --ink-text-muted: rgba(246, 241, 230, 0.62);
+
+  --hairline: rgba(23, 20, 15, 0.08);
+  --border-subtle: rgba(23, 20, 15, 0.08);
+  --border-default: rgba(23, 20, 15, 0.15);
+
+  /* Shadows stay warm-brown rather than neutral grey, so they read as a
+     shadow cast ON paper instead of a grey box behind it. */
+  --sh-btn: 0 12px 28px rgba(31, 24, 12, 0.22);
+  --sh-btn-h: 0 16px 34px rgba(31, 24, 12, 0.3);
+  --sh-card: 0 22px 54px rgba(60, 47, 27, 0.1);
+  --sh-soft: 0 14px 32px rgba(60, 47, 27, 0.12);
+  --sh-chip: 0 6px 14px rgba(31, 24, 12, 0.3);
+
+  /* Tileable film grain, generated rather than shipped as an image asset.
+     Low-frequency fractal noise at ~5% is enough to break the flatness at
+     100% zoom without showing as a pattern. */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* eds-theme.css sets `background` (the shorthand) with !important, which
+   resets background-image — so the grain has to be reasserted the same way. */
+[data-skin="eds"] body {
+  background-color: var(--bg-base) !important;
+  background-image: var(--paper-grain) !important;
+  background-repeat: repeat !important;
+  background-size: 200px 200px !important;
+}
+
+/* The recessed bands and cards carry the grain too, otherwise they read as
+   plastic panels laid on paper. */
+[data-skin="eds"] #process,
+[data-skin="eds"] .eds-card,
+[data-skin="eds"] .eds-well {
+  background-image: var(--paper-grain);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BUTTONS — the pearl treatment
+   ───────────────────────────────────────────────────────────────────────────
+   Same recipe as src/components/ui/pearl-button.tsx, rebuilt out of inset
+   shadows and background layers instead of that component's two
+   pseudo-elements.
+
+   The reason is structural, not stylistic: `.eds-btn` labels are bare text
+   nodes (`Start Your Project<span class="eds-arrow">→</span>`), so there is no
+   element to lift above a pseudo-element and the gloss would paint over its
+   own label. Inset shadows and background-images both paint UNDER content by
+   definition, so this version needs no markup change in any of the forty-odd
+   files that use the class.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-skin="eds"] .eds-btn,
+[data-skin="eds"] .btn-glass-primary,
+/* The site's primary CTA is not one class. `.kn-cta-btn` is the inner-page
+   header button ("Get a Quote") and it carried its own hardcoded orange glow
+   — `0 6px 18px -6px var(--accent-glow, rgba(249,124,31,.5))` — which no
+   amount of token repointing could reach, because the orange was the
+   fallback baked into the shorthand. */
+[data-skin="eds"] .kn-cta-btn {
+  border-radius: 100px;
+  border: 0;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: #080808;
+  background-image:
+    /* the diffuse bloom */
+    radial-gradient(125% 145% at 50% -32%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%),
+    /* the hard top gloss */ linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 46%);
+  box-shadow:
+    inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.5),
+    0 1.25rem 1.25rem rgba(31, 24, 12, 0.2),
+    0 0.45rem 0.45rem -0.25rem rgba(31, 24, 12, 0.5);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+[data-skin="eds"] .eds-btn:hover,
+[data-skin="eds"] .btn-glass-primary:hover,
+[data-skin="eds"] .kn-cta-btn:hover {
+  background-color: #0d0d0d;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.7),
+    0 1.5rem 1.5rem rgba(31, 24, 12, 0.24),
+    0 0.5rem 0.5rem -0.25rem rgba(31, 24, 12, 0.55);
+}
+
+[data-skin="eds"] .eds-btn:active,
+[data-skin="eds"] .btn-glass-primary:active,
+[data-skin="eds"] .kn-cta-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
+    0 0.8rem 0.8rem rgba(31, 24, 12, 0.2);
+}
+
+/* The arrow disc rides on the same lit capsule. */
+[data-skin="eds"] .eds-arrow {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Secondary stays flat and quiet. Two lit capsules side by side compete, and
+   the eye needs one obvious primary. */
+[data-skin="eds"] .eds-btn-2,
+[data-skin="eds"] .btn-glass-neutral {
+  border-radius: 100px;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+[data-skin="eds"] .eds-btn-2:hover,
+[data-skin="eds"] .btn-glass-neutral:hover {
+  border-color: rgba(23, 20, 15, 0.38);
+  box-shadow: var(--sh-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   OVER THE PHOTOGRAPH
+   ───────────────────────────────────────────────────────────────────────────
+   Everything that took its colour from --accent is now ink, which is
+   invisible against a dark plate. These go light instead.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FLOATING NAV — liquid glass over the hero plate
+   ───────────────────────────────────────────────────────────────────────────
+   The bar sits on top of a full-bleed photograph, so an opaque panel cuts a
+   white slab out of the image. Frosted glass instead: enough ivory tint to
+   hold near-black links at readable contrast, thin enough that the mountain
+   reads through it.
+
+   The blur is doing the legibility work, not the tint. Blurring at 22px
+   destroys the high-frequency detail behind the text, so the type sits on a
+   locally flat field even where the plate underneath is busy — which is why
+   this survives at 62% fill where a flat 62% white would not.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-skin="eds"] .eds-nav-bar {
+  background: rgba(253, 250, 244, 0.62);
+  backdrop-filter: blur(22px) saturate(185%);
+  -webkit-backdrop-filter: blur(22px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 6px rgba(60, 45, 30, 0.04),
+    0 18px 46px -16px rgba(31, 24, 12, 0.28);
+}
+
+/* The logo asset used to be opaque white-backed, which punched a solid tile
+   through the glass at the one point the eye lands first. `mix-blend-mode`
+   cannot fix that — blending happens inside the group the backdrop-filter
+   creates, so an opaque source stays opaque over a translucent bar. The file
+   itself was given an alpha channel instead (un-multiplied from white, so it
+   still composites back to the original over a white ground).
+
+   Safari and Firefox without backdrop-filter would render the 62% tint flat
+   over the photograph, which is where legibility actually breaks. Fall back
+   to something close to opaque. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-skin="eds"] .eds-nav-bar {
+    background: rgba(253, 250, 244, 0.94);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   WHATSAPP
+   ───────────────────────────────────────────────────────────────────────────
+   Both affordances were left on their original brand green / bare-text
+   styling and read as leftovers next to the pearl capsules. The glyph carries
+   the recognition; the colour does not need to.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* The bar link, as a quiet outline capsule that pairs with the pearl primary
+   sitting next to it. */
+[data-skin="eds"] .eds-wa-link {
+  padding: 8px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: 100px;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+[data-skin="eds"] .eds-wa-link:hover {
+  border-color: rgba(23, 20, 15, 0.38);
+  box-shadow: var(--sh-soft);
+  color: var(--text-primary);
+}
+
+/* The mobile floating button, as a pearl disc. */
+[data-skin="eds"] .eds-wa-fab {
+  width: 52px;
+  height: 52px;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: #080808;
+  background-image:
+    radial-gradient(125% 145% at 50% -32%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 62%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 48%);
+  box-shadow:
+    inset 0 0.25rem 0.7rem rgba(255, 255, 255, 0.3),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.3rem 0.7rem rgba(255, 255, 255, 0.45),
+    0 1rem 1rem -0.2rem rgba(31, 24, 12, 0.4);
+}
+
+[data-skin="eds"] .eds-wa-fab:active {
+  transform: translateY(2px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IMAGE FRAMES
+   ───────────────────────────────────────────────────────────────────────────
+   Every content image gets its own edge. Without one, a plate that wipes or
+   drifts on scroll has nothing to read the movement against — cream artwork
+   on a cream ground reads as a shape softly appearing rather than as an
+   object arriving, which is what made the motion feel weak.
+
+   `outline` with a negative offset rather than `border`: outline is drawn
+   outside the box model, so it costs no layout and cannot shift a card's
+   height or fight the edge-to-edge crop these images are designed around.
+   The offset pulls it back inside the image bounds so it survives the card's
+   `overflow: hidden` and its rounded corners.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root[data-skin="eds"] {
+  --img-frame: rgba(23, 20, 15, 0.16);
+}
+
+[data-skin="eds"] .eds-card img,
+[data-skin="eds"] .eds-well img,
+[data-skin="eds"] .eds-rail img {
+  outline: 1px solid var(--img-frame);
+  outline-offset: -1px;
+}
+
+/* The wells hold a single large plate, so it can carry a real frame — an
+   inner hairline plus a hairline gap to the well's own edge, the way a print
+   sits inside a mount. */
+[data-skin="eds"] .eds-well {
+  padding: 8px;
+  border: 1px solid var(--img-frame);
+}
+
+[data-skin="eds"] .eds-well img {
+  border-radius: 16px;
+}
+
+/* Width/height attributes give the browser an aspect ratio to reserve before
+   a lazy image loads; this keeps the rendered box fluid so the reservation
+   and the final size agree. Without the pair, each image had a zero-height
+   box until it decoded and then pushed everything below it down mid-scroll. */
+[data-skin="eds"] .eds-card img,
+[data-skin="eds"] .eds-well img {
+  height: auto;
+  max-width: 100%;
+}
+
+
+/* ── 1. One accent, restricted ─────────────────────────────────────────────
+   Deepened from the brand's #F97C1F. Because the buttons are overridden to
+   pearl black further down the cascade, repointing --accent reaches only the
+   places that do structural work: eyebrows, active nav, list bullets, stat
+   rings, the FAQ pluses, link hover and the scroll thread. That is roughly 5%
+   of the page's ink rather than the 30% the orange theme carried. */
+{
+  --accent: #c4611a;
+  --accent-deep: #a44f13;
+  --accent-soft: rgba(196, 97, 26, 0.09);
+  --accent-ring: #d9a071;
+  --glow-core: #c4611a;
+  --glow-bloom: #e6b489;
+
+  /* The ink band, and the values that live on it. */
+  --ink: #14120f;
+  --ink-raised: #1e1b16;
+  --ink-hairline: rgba(255, 255, 255, 0.1);
+  --ink-text: #f6f1e6;
+  --ink-text-muted: rgba(246, 241, 230, 0.62);
+}
+
+/* ── 2. Artwork back in colour ─────────────────────────────────────────────
+   The service renders are warm cream illustrations — they were the largest
+   warm area on the page before being desaturated, and they belong to the
+   paper rather than fighting it.
+ */
+img:not([src*="whatsapp"]) {
+  filter: none;
+}
+
+/* ── 3. Value structure — full-bleed ink bands ─────────────────────────────
+   Marked in the markup with data-band="ink", which is inert everywhere else,
+   so the live page is untouched by their presence. */
+[data-band="ink"] {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-inline: clamp(24px, 5vw, 64px);
+  background-color: var(--ink);
+  background-image: var(--paper-grain);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  color: var(--ink-text);
+
+  /* Repointing the tokens INSIDE the band is what reaches the inline styles.
+     The pillar cards set `color: var(--text-secondary)` inline on every list
+     item, `var(--text-muted)` on the price label, `var(--accent)` on the
+     subtitle and CTA, and `var(--hairline)` on the divider — and an inline
+     declaration beats any stylesheet rule. But `var()` resolves against the
+     element's OWN inherited custom properties, so redefining the tokens here
+     changes what those inline styles compute to. One block, no markup change,
+     and every one of them becomes legible on ink. */
+  --text-primary: var(--ink-text);
+  --text-secondary: rgba(246, 241, 230, 0.74);
+  --text-muted: rgba(246, 241, 230, 0.56);
+  --accent: #d9a071;
+  --accent-deep: #e6b489;
+  --hairline: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-default: rgba(255, 255, 255, 0.18);
+  /* Image frames invert on ink along with everything else. */
+  --img-frame: rgba(255, 255, 255, 0.2);
+}
+
+[data-band="ink"] h2,
+[data-band="ink"] h3,
+[data-band="ink"] h4 {
+  color: var(--ink-text);
+}
+
+
+
+
+/* Cards on ink go dark too. White cards on black would out-shout the
+   photography and turn the band into a lightbox. */
+[data-band="ink"] .eds-card {
+  background-color: var(--ink-raised);
+  border-color: var(--ink-hairline);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+[data-band="ink"] .eds-card img {
+  /* The card artwork is cream on cream; on a dark card it needs its own
+     ground or it floats. */
+  background: #f2ebdd;
+}
+
+
+/* The secondary button inverts on ink. */
+[data-band="ink"] .eds-btn-2 {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink-text);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+[data-band="ink"] .eds-btn-2:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* The pearl primary needs a brighter rim on ink — its lit edge was tuned
+   against paper, and on black it disappears into the band. */
+[data-band="ink"] .eds-btn {
+  background-color: #0b0b0b;
+  box-shadow:
+    inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.42),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.6),
+    0 1.25rem 1.25rem rgba(0, 0, 0, 0.5);
+}
+
+/* The scroll thread crosses from paper onto ink. Its bloom was mixed for a
+   light ground; on the band it needs to carry its own light. */
+[data-band="ink"] + *,
+[data-band="ink"] {
+  --glow-bloom: #e6b489;
+}
+
+/* ── 4. Section rhythm ─────────────────────────────────────────────────────
+   The bands need their own breathing room — the page's 64px section padding
+   was measured for surfaces that share a ground. */
+[data-band="ink"] {
+  padding-block: clamp(72px, 8vw, 112px);
+  margin-block: clamp(56px, 6vw, 88px);
+}
+
+#contact[data-band="ink"] {
+  margin-bottom: 0;
+}
+
+/* The headline's second half is the payload — "Not an agency." is the claim,
+   "Product studio." is only the setup. Inheriting the shipped theme's muted
+   white made the punchline the quietest thing on the page. A warm light tan
+   reads as emphasis against a cool plate without reintroducing a colour that
+   fights it. */
+/* ── The footer closes the page in the same ink as the contact block ────────
+   It used to sit on paper below a dark #contact, so the page ended
+   dark → light gap → light footer. Running the ink straight through means
+   the page resolves in one block instead of trailing off.
+
+   Flush at the top (no band margin) so it reads as the same surface as the
+   section above it, with only the inline hairline — which resolves light
+   inside an ink band — marking the division. Zero at the bottom so the ink
+   reaches the end of the document. Its own padding stays, rather than
+   inheriting the band's much taller rhythm; a footer is a sign-off, not a
+   section. */
+footer[data-band="ink"] {
+  margin-top: 0;
+  margin-bottom: 0;
+  /* The real footer carries six link columns, two addresses and a legal nav,
+     so it sets its own vertical rhythm — the band's padding would double it. */
+  padding-block: 0;
+}
+
+/* The shared footer's palette comes from Tailwind semantic utilities
+   (text-muted-foreground, border-border, text-foreground), and those resolve
+   through @theme to --text-muted / --border-default / --text-primary — the
+   same tokens the ink band re-scopes. So the columns, headings and rules all
+   invert on their own. Two things do not: */
+
+/* The wordmark is a dark PNG meant for a light ground. */
+footer[data-band="ink"] img[src="/logo.png"] {
+  filter: invert(1) brightness(1.6);
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LONG-STRING WRAPPING
+   ───────────────────────────────────────────────────────────────────────────
+   A bare email address or URL in body copy is one unbreakable 34-character
+   word. At 320px it is wider than the column, so it pushes the document out
+   and the whole page becomes draggable sideways — and because a horizontally
+   overflowing document widens the initial containing block on mobile, every
+   `position: fixed` element pinned with `inset-x-0` (the sticky CTA bar) gets
+   stretched past the viewport with it. One unwrapped mailto was making the
+   whole page look broken.
+
+   `break-word` rather than `anywhere`: it only breaks a word that cannot fit
+   on a line of its own, so ordinary prose is untouched.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+p,
+li,
+a,
+dd,
+dt,
+address,
+blockquote,
+figcaption {
+  overflow-wrap: break-word;
+}

@@ -47,22 +47,12 @@ export function EdsNav({ items, active }: { items: NavItem[]; active: string }) 
         pointerEvents: "none",
       }}
     >
-      <nav
-        style={{
-          pointerEvents: "auto",
-          background: "#fff",
-          borderRadius: 26,
-          border: "1px solid var(--hairline)",
-          boxShadow: "0 2px 6px rgba(60,45,30,.05), 0 14px 40px -14px rgba(60,45,30,.16)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 24,
-          padding: "12px 12px 12px clamp(16px, 1.6vw, 26px)",
-        }}
-      >
+      {/* Styling lives in CSS, not inline: an inline `background` cannot be
+          reached by a theme, and this bar has to turn to glass over the hero
+          photograph. */}
+      <nav className="eds-nav-bar">
         <Link href="/" style={{ display: "block", flex: "none" }} aria-label="Everyday Digital Solutions — home">
-          <img src={LOGO} alt="Everyday Digital Solutions" style={{ display: "block", height: 42 }} />
+          <img src={LOGO} alt="Everyday Digital Solutions" className="eds-nav-logo" />
         </Link>
 
         <div className="hidden lg:flex" style={{ gap: "clamp(20px, 2.2vw, 40px)", alignItems: "center" }}>
@@ -95,13 +85,12 @@ export function EdsNav({ items, active }: { items: NavItem[]; active: string }) 
           })}
         </div>
 
-        <a
-          href="#contact"
-          className="eds-btn"
-          style={{ fontSize: 16, padding: "13px 13px 13px 24px", borderRadius: 999, flex: "none" }}
-        >
+        {/* Class, not inline styles: an inline `padding` cannot be relaxed by a
+            media query, and at 320px this button plus the logo overflowed the
+            viewport by 12px. */}
+        <a href="#contact" className="eds-btn eds-nav-cta">
           Let’s Talk
-          <span className="eds-arrow" style={{ width: 30, height: 30, fontSize: 15 }}>→</span>
+          <span className="eds-arrow">→</span>
         </a>
       </nav>
     </div>

@@ -1,0 +1,215 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   KINETIC LOADER — styles for src/components/ui/kinetic-loader.tsx
+   ───────────────────────────────────────────────────────────────────────────
+   Scaling: every dimension inside is in `em`, so the whole sculpture is driven
+   by ONE font-size. `--kinetic-size` is that lever. The piece is 13em across,
+   so a font-size of 5.2vmin gives a ~68vmin sculpture — big enough to stop
+   reading as a spinner, small enough to leave the copy its own air.
+
+   Palette: the source is cold neumorphic grey (#e0e0e0) meant for a #e0e0e0
+   ground. On warm ivory that reads as dirt, the same way the cold zinc greys
+   did in the first pass of the paper theme — so the greys are mixed toward the
+   paper and the shadows are warm-brown rather than neutral black.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.kinetic {
+  --kinetic-size: clamp(15px, 5.2vmin, 44px);
+  --kinetic-groove: #efe8da; /* the recessed channel */
+  --kinetic-rim: #f3ecdf;
+  --kinetic-ball: #f7f2e7;
+  --kinetic-shadow: rgba(60, 47, 27, 0.16);
+  --kinetic-shadow-soft: rgba(60, 47, 27, 0.09);
+  --kinetic-light: rgba(255, 253, 248, 0.85);
+
+  font-size: var(--kinetic-size);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+/* Stacking context for the two layers. Sized in em so it tracks the scale. */
+.kinetic .main {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 13em;
+  height: 13em;
+}
+
+.kinetic .loaders,
+.kinetic .loadersB {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* `grid-area: 1/1` stacks every channel in the same cell — the original used
+   `position: absolute`, which escapes to the nearest positioned ancestor once
+   this sits inside a real layout. Same visual result, no escape hatch. */
+.kinetic .loader,
+.kinetic .loaderA {
+  grid-area: 1 / 1;
+  width: 1.15em;
+  height: 13em;
+  border-radius: 50px;
+}
+
+.kinetic .loader {
+  position: relative;
+  background: var(--kinetic-groove);
+}
+
+.kinetic .loaderA {
+  background: transparent;
+}
+
+/* The two grooves — top and bottom — masked so they fade out toward the
+   middle, which is what makes the channel look bored rather than drawn. */
+.kinetic .loader::after,
+.kinetic .loader::before {
+  content: "";
+  position: absolute;
+  width: 1.15em;
+  background: var(--kinetic-groove);
+  border-radius: 50px;
+  border: 1px solid var(--kinetic-rim);
+  box-shadow:
+    inset 5px 5px 15px var(--kinetic-shadow-soft),
+    inset -5px -5px 15px var(--kinetic-light);
+}
+
+.kinetic .loader::after {
+  left: 0;
+  top: 0;
+  height: 5em;
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(to bottom, black calc(100% - 48px), transparent 100%);
+}
+
+.kinetic .loader::before {
+  right: 0;
+  bottom: 0;
+  height: 4.5em;
+  -webkit-mask-image: linear-gradient(to top, black calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(to top, black calc(100% - 48px), transparent 100%);
+}
+
+/* 0° → 160° in 20° steps. Nine channels covers the full circle, because a bar
+   rotated 180° maps onto itself. */
+.kinetic .loader:nth-child(2),
+.kinetic .loaderA:nth-child(2) { transform: rotate(20deg); }
+.kinetic .loader:nth-child(3),
+.kinetic .loaderA:nth-child(3) { transform: rotate(40deg); }
+.kinetic .loader:nth-child(4),
+.kinetic .loaderA:nth-child(4) { transform: rotate(60deg); }
+.kinetic .loader:nth-child(5),
+.kinetic .loaderA:nth-child(5) { transform: rotate(80deg); }
+.kinetic .loader:nth-child(6),
+.kinetic .loaderA:nth-child(6) { transform: rotate(100deg); }
+.kinetic .loader:nth-child(7),
+.kinetic .loaderA:nth-child(7) { transform: rotate(120deg); }
+.kinetic .loader:nth-child(8),
+.kinetic .loaderA:nth-child(8) { transform: rotate(140deg); }
+.kinetic .loader:nth-child(9),
+.kinetic .loaderA:nth-child(9) { transform: rotate(160deg); }
+
+.kinetic .ball {
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 50%;
+  background-color: var(--kinetic-ball);
+  /* Lit from above: a dark inset pooling at the bottom of the sphere, then a
+     stack of increasingly diffuse drop shadows under it. */
+  box-shadow:
+    var(--kinetic-shadow) 0px -10px 10px 0px inset,
+    var(--kinetic-shadow-soft) 0px -15px 15px 0px inset,
+    rgba(60, 47, 27, 0.07) 0px -40px 20px 0px inset,
+    rgba(60, 47, 27, 0.05) 0px 2px 1px,
+    rgba(60, 47, 27, 0.06) 0px 4px 2px,
+    rgba(60, 47, 27, 0.06) 0px 8px 4px,
+    rgba(60, 47, 27, 0.06) 0px 16px 8px,
+    rgba(60, 47, 27, 0.05) 0px 32px 16px;
+  animation: kinetic-move 3.63s ease-in-out infinite;
+  will-change: transform;
+}
+
+.kinetic .ball1 { animation-delay: 0.2s; }
+.kinetic .ball2 { animation-delay: 0.4s; }
+.kinetic .ball3 { animation-delay: 0.6s; }
+.kinetic .ball4 { animation-delay: 0.8s; }
+.kinetic .ball5 { animation-delay: 1s; }
+.kinetic .ball6 { animation-delay: 1.2s; }
+.kinetic .ball7 { animation-delay: 1.4s; }
+.kinetic .ball8 { animation-delay: 1.6s; }
+
+@keyframes kinetic-move {
+  0%   { transform: translateY(0em); }
+  50%  { transform: translateY(11.85em); }
+  100% { transform: translateY(0em); }
+}
+
+/* Motion off means the final state, not a blank space — the balls rest at the
+   midpoint of their channels so the composition still reads. */
+@media (prefers-reduced-motion: reduce) {
+  .kinetic .ball {
+    animation: none;
+    transform: translateY(5.9em);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO COMPOSITION
+   ───────────────────────────────────────────────────────────────────────────
+   Copy left, sculpture right of centre. The sculpture cannot sit behind the
+   copy: all nine channels overlap at the middle, so the densest part of the
+   composition is exactly where text would be least readable.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.kinetic-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--bg-base);
+  background-image: var(--paper-grain);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.kinetic-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--w-hero);
+  margin: 0 auto;
+  padding: 96px clamp(24px, 5vw, 64px) 48px;
+}
+
+.kinetic-hero__copy {
+  max-width: 34rem;
+}
+
+/* Anchored off-centre to the right so it clears the copy column entirely. */
+.kinetic-hero__art {
+  position: absolute;
+  top: 50%;
+  left: 72%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+@media (max-width: 1023px) {
+  /* No room for two columns: the sculpture goes behind, dropped back far
+     enough that it reads as texture rather than as competition. */
+  .kinetic-hero__art {
+    left: 50%;
+    opacity: 0.4;
+  }
+  .kinetic-hero__copy {
+    max-width: 100%;
+  }
+}

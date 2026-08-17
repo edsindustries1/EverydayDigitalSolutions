@@ -534,7 +534,7 @@ export default function Contact() {
       <Navbar />
       <main className="pt-8 pb-16 sm:pt-12 lg:pt-28 lg:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100dvh]">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20">
-          <div>
+          <div className="min-w-0">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-6 lg:mb-8 leading-tight">
               Start a <em className="text-primary italic">project</em>.
             </h1>
@@ -602,7 +602,12 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="glass-elevated rounded-2xl p-6 sm:p-8 lg:p-10">
+          {/* min-w-0: a grid track defaults to `min-width: auto`, so it grows to
+              its content's min-content width. The step indicator inside is an
+              `overflow-x-auto` row of non-shrinking pills — without this the
+              track expanded to fit them instead of letting them scroll, and at
+              1024px that pushed the whole page 53px sideways. */}
+          <div className="glass-elevated rounded-2xl p-6 sm:p-8 lg:p-10 min-w-0">
             <StepDots step={step} />
 
             {step === 0 && (

@@ -60,6 +60,10 @@ import BlogPost from "@/pages/blog/post";
 
 import CardPage from "@/pages/card";
 
+// Design previews. Not prerendered, not in the sitemap, not linked from the
+// site — they exist to look at a proposed skin against the real page.
+import ButtonsPreview from "@/pages/preview/buttons";
+
 import { StickyCTA } from "@/components/StickyCTA";
 import { ExitIntent } from "@/components/ExitIntent";
 import { WhatsAppFAB } from "@/components/WhatsAppFAB";
@@ -120,6 +124,8 @@ function Router() {
       <Route path="/blog/:slug" component={BlogPost} />
 
       <Route path="/card/:slug" component={CardPage} />
+
+      <Route path="/preview/buttons" component={ButtonsPreview} />
 
 
       <Route component={NotFound} />

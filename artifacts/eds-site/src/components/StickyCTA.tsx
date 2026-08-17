@@ -61,7 +61,7 @@ export function StickyCTA() {
           target="_blank"
           rel="noopener noreferrer"
           data-float=""
-          className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-foreground hover:text-primary transition-colors"
+          className="eds-wa-link hidden sm:inline-flex items-center gap-1.5 text-xs font-medium transition-colors"
           aria-label="Message us on WhatsApp"
         >
           <MessageCircle className="w-4 h-4" />
